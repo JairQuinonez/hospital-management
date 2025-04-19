@@ -14,7 +14,10 @@ export class RoleChooserComponent {
     private router: Router,
     private localStorageService: LocalStorageService,
     private authService: AuthService
-  ) { }
+  ) {
+
+    console.log('RoleChooserComponent is being created', this.authService.getClaims());
+   }
 
   selectRole(role: string): void {
     console.log('Selected role: ' + role);

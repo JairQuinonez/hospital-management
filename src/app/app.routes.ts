@@ -13,7 +13,6 @@ export const routes: Routes = [
   {
     path: 'dr',
     component: DoctorDashboardComponent,
-    canActivate: [],
   },
   {
     path: 'home',
@@ -25,13 +24,13 @@ export const routes: Routes = [
     component: PatientDashboardComponent,
     canActivate: [AuthGuard],
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'role-selection', 
     component: RoleChooserComponent,
     pathMatch: 'full',
   },
   { path: '**', redirectTo: '/login' },
-  { path: 'auth-callback', component: AuthCallbackComponent },
+  //{ path: 'auth-callback', component: AuthCallbackComponent },
 
 ];

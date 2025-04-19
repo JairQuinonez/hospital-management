@@ -21,6 +21,8 @@ export class AuthService {
     private router: Router,
     private localStorageService: LocalStorageService
   ) {
+    console.log('AuthService is being created');
+
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
        this.isLoggedInSubject.next(this.oauthService.hasValidAccessToken());
@@ -48,11 +50,12 @@ export class AuthService {
     console.log('loadUserProfile  is  being  called?'); 
     this.oauthService.loadUserProfile().then(profile => {
       this.userProfileSubject.next(profile); // Update the subject
-      const role = this.localStorageService.getItem<string>('role'); // Check if role already exists
+      const role = this.localStorageService.getItem<string>('role');
+      console.log({role}) // Check if role already exists
       if (!role) {
         this.router.navigate(['/role-selection']); // Redirect to role selection
       } else {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       }
     });
   }
