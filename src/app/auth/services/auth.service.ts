@@ -10,7 +10,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  private userProfileSubject = new BehaviorSubject<any>(null); // Use BehaviorSubject for initial value
+  private userProfileSubject = new BehaviorSubject<any>(null);
   userProfile$ = this.userProfileSubject.asObservable();
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
@@ -27,10 +27,10 @@ export class AuthService {
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
       this.isLoggedInSubject.next(this.oauthService.hasValidAccessToken());
       if (this.isLoggedInSubject.value) {
-        this.loadUserProfile(); // Load profile if already logged in
+        this.loadUserProfile();
       }
     });
-    this.oauthService.setupAutomaticSilentRefresh(); // For refresh tokens
+    this.oauthService.setupAutomaticSilentRefresh();
   }
 
   login(): void {
@@ -49,14 +49,13 @@ export class AuthService {
   loadUserProfile(): void {
     console.log('loadUserProfile  is  being  called?');
     this.oauthService.loadUserProfile().then(profile => {
-      this.userProfileSubject.next(profile); // Update the subject
+      this.userProfileSubject.next(profile);
       const role = this.localStorageService.getItem<string>('role');
-      console.log({ role }) // Check if role already exists
+      console.log({ role })
       if (!role) {
-        this.router.navigate(['/role-selection']); // Redirect to role selection
+        this.router.navigate(['/role-selection']);
       } else {
         this.navigateByRole(role);
-        //this.router.navigate(['/home']);
       }
     });
   }
@@ -79,6 +78,13 @@ export class AuthService {
     } else if (role === 'patient') {
       this.router.navigate(['/patient']);
     }
+  }
+
+
+
+
+  getUserInfo(): any {
+    return this.oauthService.getIdentityClaims();
   }
 
 }
