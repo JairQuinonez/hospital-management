@@ -11,7 +11,6 @@ export class DoctorDashboardComponent {
   role: string  | null;  
   constructor(private authService: AuthService) {
     this.role = this.authService.getRole();
-    
   }
 
   logout(): void {

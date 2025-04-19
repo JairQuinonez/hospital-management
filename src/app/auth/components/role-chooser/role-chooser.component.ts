@@ -10,23 +10,25 @@ import { LocalStorageService } from '../../services/local-storage.service';
   styleUrl: './role-chooser.component.scss'
 })
 export class RoleChooserComponent {
+  selectedRole: 'doctor' | 'patient' | null = null;
   constructor(
     private router: Router,
     private localStorageService: LocalStorageService,
     private authService: AuthService
-  ) {
+  ) {}
 
-    console.log('RoleChooserComponent is being created', this.authService.getClaims());
-   }
-
-  selectRole(role: string): void {
-    console.log('Selected role: ' + role);
-    this.localStorageService.setItem('role', role);
-    this.authService.loadUserProfile(); 
-  }
 
   logout(): void {
     this.authService.logout();
+  }
+
+
+  selectRole(role: 'doctor' | 'patient'): void {
+    this.selectedRole = role;
+    this.localStorageService.setItem('role', role);
+    setTimeout(() => {
+      this.authService.loadUserProfile();
+    }, 3000);
   }
 
 }

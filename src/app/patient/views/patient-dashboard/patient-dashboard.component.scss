@@ -1,0 +1,56 @@
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    text-align: center;
+    background-color: #f8f9fa; 
+  
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #343a40;
+    }
+  
+    .welcome-message {
+      font-size: 1.2rem;
+      color: #6c757d;
+      margin-bottom: 2rem;
+    }
+  
+    .role-buttons {
+      display: flex;
+      gap: 2rem; 
+    }
+  
+    .role-button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  
+      &.logout {
+        background-color: #e41313;
+        color: white;
+  
+        &:hover {
+          background-color: #921d1d;
+        }
+      }
+  
+  
+      &.selected {
+        box-shadow: 0 0 0 3px rgba(212, 16, 16, 0.5);
+      }
+  
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(212, 16, 16, 0.5);
+      }
+    }
+
+  }

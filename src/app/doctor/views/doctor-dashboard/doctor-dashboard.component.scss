@@ -1,0 +1,60 @@
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    text-align: center;
+    background-color: #f8f9fa; /* Un fondo claro */
+  
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #343a40;
+    }
+  
+    .welcome-message {
+      font-size: 1.2rem;
+      color: #6c757d;
+      margin-bottom: 2rem;
+    }
+  
+    .role-buttons {
+      display: flex;
+      gap: 2rem; /* Espacio entre los botones */
+    }
+  
+    .role-button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  
+      &.logout {
+        background-color: #e41313;
+        color: white;
+  
+        &:hover {
+          background-color: #921d1d;
+        }
+      }
+  
+      &.selected {
+        box-shadow: 0 0 0 3px rgba(192, 12, 12, 0.5); /* Resaltar el botón seleccionado */
+      }
+  
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(212, 16, 16, 0.5); /* Resaltar al enfocar */
+      }
+    }
+  
+    .selected-message {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      color: #20c997;
+    }
+  }

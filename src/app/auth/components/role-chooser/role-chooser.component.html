@@ -1,4 +1,23 @@
-<h2>Selecciona tu rol:</h2>
-<button (click)="selectRole('patient')">Paciente</button>
-<button (click)="selectRole('doctor')">Médico</button>
-<button (click)="logout()">Logout</button>
+<div class="welcome-container">
+    <h1>¡Bienvenido! ¿Eres nuevo?</h1>
+    <p class="welcome-message">Por favor, selecciona el tipo de usuario que eres:</p>
+
+    <div class="role-buttons">
+        <button class="role-button doctor" (click)="selectRole('doctor')" [class.selected]="selectedRole === 'doctor'">
+            Doctor
+        </button>
+        <button class="role-button patient" (click)="selectRole('patient')"
+            [class.selected]="selectedRole === 'patient'">
+            Paciente
+        </button>
+    </div>
+    @if (selectedRole){
+    <div class="selected-message">
+        Has seleccionado: <strong>{{ selectedRole === 'doctor' ? 'Doctor' : 'Paciente' }}</strong>.
+        A continuación, serás redirigido al formulario correspondiente.
+    </div>
+
+    }
+
+
+</div>

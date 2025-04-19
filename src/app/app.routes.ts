@@ -8,7 +8,6 @@ import { HomeComponent } from './shared/views/home/home.component';
 import { AuthCallbackComponent } from './auth/components/auth-callback/auth-callback.component';
 
 export const routes: Routes = [
-  //{ path: '**', redirectTo: '/login' },
   { path: 'login', component: LoginComponent },
   {
     path: 'role-selection', 

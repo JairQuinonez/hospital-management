@@ -1,3 +1,10 @@
-<h1>Bienvenido!</h1>
-<p>Rol: {{ role }}</p>
-<button (click)="logout()">Logout</button>
+<div class="welcome-container">
+    <h1>¡Bienvenido! Doctor</h1>
+
+    <div class="role-buttons">
+        <button class="role-button logout" (click)="logout()" [class.selected]="'doctor'">
+            Logout
+        </button>
+    </div>
+
+</div>
