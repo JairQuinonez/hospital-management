@@ -25,9 +25,9 @@ export class AuthService {
 
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
-       this.isLoggedInSubject.next(this.oauthService.hasValidAccessToken());
+      this.isLoggedInSubject.next(this.oauthService.hasValidAccessToken());
       if (this.isLoggedInSubject.value) {
-         this.loadUserProfile(); // Load profile if already logged in
+        this.loadUserProfile(); // Load profile if already logged in
       }
     });
     this.oauthService.setupAutomaticSilentRefresh(); // For refresh tokens
@@ -47,15 +47,16 @@ export class AuthService {
   }
 
   loadUserProfile(): void {
-    console.log('loadUserProfile  is  being  called?'); 
+    console.log('loadUserProfile  is  being  called?');
     this.oauthService.loadUserProfile().then(profile => {
       this.userProfileSubject.next(profile); // Update the subject
       const role = this.localStorageService.getItem<string>('role');
-      console.log({role}) // Check if role already exists
+      console.log({ role }) // Check if role already exists
       if (!role) {
         this.router.navigate(['/role-selection']); // Redirect to role selection
       } else {
-        this.router.navigate(['/home']);
+        this.navigateByRole(role);
+        //this.router.navigate(['/home']);
       }
     });
   }
@@ -68,8 +69,16 @@ export class AuthService {
     return !!this.localStorageService.getItem<string>('role');
   }
 
-   getRole(): string | null {
-       return this.localStorageService.getItem<string>('role');
-   }
+  getRole(): string | null {
+    return this.localStorageService.getItem<string>('role');
+  }
+
+  navigateByRole(role: string): void {
+    if (role === 'doctor') {
+      this.router.navigate(['/dr']);
+    } else if (role === 'patient') {
+      this.router.navigate(['/patient']);
+    }
+  }
 
 }

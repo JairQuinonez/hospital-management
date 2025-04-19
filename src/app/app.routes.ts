@@ -8,29 +8,30 @@ import { HomeComponent } from './shared/views/home/home.component';
 import { AuthCallbackComponent } from './auth/components/auth-callback/auth-callback.component';
 
 export const routes: Routes = [
+  //{ path: '**', redirectTo: '/login' },
   { path: 'login', component: LoginComponent },
+  {
+    path: 'role-selection', 
+    component: RoleChooserComponent,
+    pathMatch: 'full',
+  },
 
   {
     path: 'dr',
     component: DoctorDashboardComponent,
+    canActivate: [AuthGuard], 
   },
   {
     path: 'home',
     component: HomeComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
+
   },
   {
     path: 'patient',
     component: PatientDashboardComponent,
     canActivate: [AuthGuard],
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path: 'role-selection', 
-    component: RoleChooserComponent,
-    pathMatch: 'full',
-  },
-  { path: '**', redirectTo: '/login' },
-  //{ path: 'auth-callback', component: AuthCallbackComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 
 ];
