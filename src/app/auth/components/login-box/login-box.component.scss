@@ -1,0 +1,73 @@
+@use "sass:color";
+.form {
+  width: 70%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 20px 16px 3px 0px #569bfa;
+  &__logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    & .logo {
+      width: 70%;
+      max-width: 200px;
+    }
+  }
+  &__group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    & label {
+      font-size: 1em;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    & input {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+
+      &:focus {
+        outline: none;
+        border-color: #1e4375;
+      }
+    }
+  }
+
+
+  &__sign-in-btn {
+    background-color: #569bfa;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+
+    height: 50px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust(#2f5fa1, $lightness: -10%);
+    }
+
+    & p {
+      margin: 0;
+      padding: 0;
+      font-size: 1.2em;
+    }
+  }
+}
+
+
+.login-text {
+  justify-content: center;
+  align-items: center;
+  color: #113970;
+  text-align: center;
+}
