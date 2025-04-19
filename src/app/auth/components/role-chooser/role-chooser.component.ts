@@ -15,7 +15,7 @@ export class RoleChooserComponent {
     private router: Router,
     private localStorageService: LocalStorageService,
     private authService: AuthService
-  ) {}
+  ) { }
 
 
   logout(): void {
@@ -26,9 +26,16 @@ export class RoleChooserComponent {
   selectRole(role: 'doctor' | 'patient'): void {
     this.selectedRole = role;
     this.localStorageService.setItem('role', role);
-    setTimeout(() => {
-      this.authService.loadUserProfile();
-    }, 3000);
+    if (this.localStorageService.getAuthValidation()) {
+      setTimeout(() => {
+        this.authService.navigateByRole(role);
+      }, 3000);
+    } else {
+      setTimeout(() => {
+        this.authService.loadUserProfile();
+      }, 3000);
+    }
+    
   }
 
 }

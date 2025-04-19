@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
+import { LocalStorageService } from '../../../auth/services/local-storage.service';
 
 export  interface IUserInfo {
   name: string;
   email: string;
   picture: string;
   given_name: string;
+}
+
+export  interface IUserInfoLocal {
+  name: string;
+  email: string;
+  picture: string;
+  given_name: string;
+  password: string;
 }
 
 @Component({
@@ -16,13 +25,28 @@ export  interface IUserInfo {
 })
 export class DoctorDashboardComponent {
   role: string  | null;  
-  userInfo: IUserInfo | null;
+  userInfo: IUserInfo={
+    name: '',
+    email: '',
+    picture: '',  
+    given_name: '',
+  };
 
 
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private localStorage: LocalStorageService) {  
     this.role = this.authService.getRole();
-    this.userInfo = this.authService.getUserInfo() as IUserInfo;
+    this.validateByUser(); 
+  }
+
+  validateByUser(){
+    if(this.localStorage.getAuthValidation()){
+      this.userInfo = this.localStorage.getDefaultUserInfo() as IUserInfo
+      console.log("VALIIDATE NORMAL",this.userInfo)
+    } else {
+      this.userInfo = this.authService.getUserInfo() as IUserInfo;
+    }
+
   }
 
   logout(): void {

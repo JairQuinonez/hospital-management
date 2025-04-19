@@ -22,7 +22,7 @@
 
     & label {
       font-size: 1em;
-      color: #333;
+      color: #1e4375;
       margin-bottom: 5px;
     }
 
@@ -39,6 +39,36 @@
     }
   }
 
+  &__forgot-password-link {
+    text-align: right;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    & a {
+      text-decoration: none;
+      color: #1e4375;
+    }
+  }
+
+  &__separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    color: #bbb;
+
+    & span {
+      margin: 0 10px;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: #ddd;
+    }
+  }
+
 
   &__sign-in-btn {
     background-color: #569bfa;
@@ -48,7 +78,6 @@
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-
     height: 50px;
     transition: background-color 0.3s ease;
 
@@ -70,4 +99,19 @@
   align-items: center;
   color: #113970;
   text-align: center;
+}
+
+.form__error {
+  color: red;
+  font-size: 0.7rem; 
+  display: flex; 
+  margin-top: 4px; 
+  justify-content: end;
+}
+
+.form__sign-in-btn:disabled {
+  background-color: #ddd;  
+  color: #888;            
+  cursor: not-allowed;
+  opacity: 0.7;
 }

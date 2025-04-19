@@ -4,9 +4,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    height: 100vh; 
     text-align: center;
-    background-color: #f8f9fa; /* Un fondo claro */
+    background-color: #f8f9fa; 
   
     h1 {
       font-size: 2.5rem;
@@ -22,7 +22,7 @@
   
     .role-buttons {
       display: flex;
-      gap: 2rem; /* Espacio entre los botones */
+      gap: 2rem; 
     }
   
     .role-button {
@@ -43,12 +43,12 @@
       }
   
       &.selected {
-        box-shadow: 0 0 0 3px rgba(192, 12, 12, 0.5); /* Resaltar el botón seleccionado */
+        box-shadow: 0 0 0 3px rgba(192, 12, 12, 0.5); 
       }
   
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(212, 16, 16, 0.5); /* Resaltar al enfocar */
+        box-shadow: 0 0 0 3px rgba(212, 16, 16, 0.5); 
       }
     }
   
