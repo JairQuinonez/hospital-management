@@ -80,4 +80,11 @@ export class AuthService {
     }
   }
 
+
+
+
+  getUserInfo(): any {
+    return this.oauthService.getIdentityClaims();
+  }
+
 }

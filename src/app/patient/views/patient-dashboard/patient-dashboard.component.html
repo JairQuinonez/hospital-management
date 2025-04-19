@@ -1,6 +1,16 @@
 <div class="welcome-container">
     <h1>¡Bienvenido! Paciente</h1>
 
+    <div style="height: 20px;"></div>
+
+
+    @if (userInfo){
+    <p>Nombre: {{ userInfo.name }}</p>
+    <p>Correo electrónico: {{ userInfo.email }}</p>
+    }
+
+    <div style="height: 40px;"></div>
+
     <div class="role-buttons">
         <button class="role-button logout" (click)="logout()" [class.selected]="'patient'">
             Logout
