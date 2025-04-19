@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authCodeFlowConfig } from './auth.config';
-import { Router } from '@angular/router';//
+import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
 import { Subject, BehaviorSubject } from 'rxjs';
 
@@ -44,6 +44,8 @@ export class AuthService {
     this.userProfileSubject.next(null);
     this.isLoggedInSubject.next(false);
     this.router.navigate(['/login']);
+    
+    this.localStorageService.setDefaultUserInfo();  
   }
 
   loadUserProfile(): void {
@@ -79,9 +81,6 @@ export class AuthService {
       this.router.navigate(['/patient']);
     }
   }
-
-
-
 
   getUserInfo(): any {
     return this.oauthService.getIdentityClaims();
