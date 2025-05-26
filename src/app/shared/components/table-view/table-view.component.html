@@ -1,0 +1,66 @@
+<div class="responsive-table-wrapper">
+  <table class="responsive-table">
+    <thead class="responsive-table__header">
+      <tr class="responsive-table__header-row">
+        @for (column of columns(); track trackByColumnKey($index, column)) {
+        <th
+          class="responsive-table__header-cell"
+          (click)="onHeaderClick(column.key)"
+          scope="col"
+          [attr.aria-sort]="null"
+        >
+          <!-- Podrías añadir lógica de aria-sort aquí -->
+          {{ column.header }}
+        </th>
+        } @if (showActionButton()) {
+        <th
+          class="responsive-table__header-cell responsive-table__header-cell--action"
+          scope="col"
+        >
+          <!-- Espacio para el encabezado de la columna de acción si es necesario, o dejar vacío -->
+        </th>
+        }
+      </tr>
+    </thead>
+    <tbody class="responsive-table__body">
+      @if (data().length === 0) {
+      <tr class="responsive-table__row responsive-table__row--empty">
+        <td
+          [attr.colspan]="columns().length + (showActionButton() ? 1 : 0)"
+          class="responsive-table__cell responsive-table__cell--empty"
+        >
+          No hay datos para mostrar. 
+        </td>
+      </tr>
+      } @for (row of data(); track trackByRowIndex($index, row)) {
+      <tr class="responsive-table__row">
+        @for (column of columns(); track trackByColumnKey($index, column)) {
+        <td class="responsive-table__cell" [attr.data-label]="column.header">
+          <!-- Útil para responsive en CSS si se colapsan las celdas -->
+          {{ row[column.key] }}
+          <!-- Podrías usar un switch para pipes aquí basado en column.isDate, column.isCurrency, etc. -->
+          <!--
+            <ng-container [ngSwitch]="true">
+              <ng-container *ngSwitchCase="column.isDate">{{ row[column.key] | date:'dd/MM/yy' }}</ng-container>
+              <ng-container *ngSwitchCase="column.isCurrency">{{ row[column.key] | currency:'USD':'symbol':'1.2-2' }}</ng-container>
+              <ng-container *ngSwitchDefault>{{ row[column.key] }}</ng-container>
+            </ng-container>
+            -->
+        </td>
+        } @if (showActionButton()) {
+        <td class="responsive-table__cell responsive-table__cell--action">
+          <button
+            type="button"
+            class="responsive-table__action-button"
+            [ngClass]="actionButtonClass()"
+            (click)="onActionButtonClick(row, $event)"
+          >
+            {{ actionButtonText() }}
+          </button>
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

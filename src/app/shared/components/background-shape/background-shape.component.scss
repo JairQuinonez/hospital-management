@@ -1,0 +1,97 @@
+// Variables locales
+$default-shape-color: #7da9c7; // Color si el SVG no tiene uno o para otros elementos
+$logo-default-size: 100px;
+$name-default-color: #2c3e50; // Ejemplo, como en el diseño anterior
+$name-font-size: 1.1rem;
+$padding-default: 30px; // Padding interno del contenedor
+
+:host {
+  display: block; // El componente se comporta como un bloque
+  position: relative; // Para el posicionamiento absoluto de los hijos
+  width: 100%;
+  height: 100%;
+  overflow: hidden; // Para que el contenido interno no desborde si se posiciona fuera
+}
+
+.background-shape {
+  width: 100%;
+  height: 100%;
+  // background-image se aplica desde el input
+  background-size: cover; // O el que mejor funcione para tu forma
+  background-position: center; // O el que mejor funcione
+  background-repeat: no-repeat;
+  position: relative; 
+
+  display: flex; 
+
+  &__logo,
+  &__name {
+    position: absolute; // Permite posicionamiento preciso basado en top, right, bottom, left
+    z-index: 1; // Para estar por encima del fondo SVG
+  }
+
+  &__logo {
+    width: $logo-default-size;
+    height: auto;
+    max-width: 90%; // Evitar que el logo sea demasiado grande
+    max-height: 90%;
+    object-fit: contain;
+    opacity: 0.85; // Ligera transparencia como en el ejemplo
+
+    // Alineación Horizontal
+    &.logo-align-h--left { left: $padding-default; }
+    &.logo-align-h--right { right: $padding-default; }
+    &.logo-align-h--center {
+      left: 50%;
+      transform: translateX(-50%); // Para centrar horizontalmente
+      &.logo-align-v--center { transform: translate(-50%, -50%); } // Centrar ambos ejes
+      &.logo-align-v--top { transform: translateX(-50%); }
+      &.logo-align-v--bottom { transform: translateX(-50%); }
+    }
+
+    // Alineación Vertical
+    &.logo-align-v--top { top: $padding-default; }
+    &.logo-align-v--bottom { bottom: $padding-default; }
+    &.logo-align-v--center {
+      top: 50%;
+      // El transform para centrar verticalmente se combina con el horizontal si es 'center'
+      &:not(.logo-align-h--center) { transform: translateY(-50%); }
+    }
+  }
+
+  &__name {
+    color: $name-default-color;
+    font-size: $name-font-size;
+    font-weight: 600;
+
+    // Alineación Horizontal
+    &.name-align-h--left { left: $padding-default; }
+    &.name-align-h--right { right: $padding-default; text-align: right; }
+    &.name-align-h--center {
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      &.name-align-v--center { transform: translate(-50%, -50%); }
+      &.name-align-v--top { transform: translateX(-50%); }
+      &.name-align-v--bottom { transform: translateX(-50%); }
+    }
+
+    // Alineación Vertical
+    &.name-align-v--top { top: $padding-default; }
+    &.name-align-v--bottom { bottom: $padding-default; }
+    &.name-align-v--center {
+      top: 50%;
+      &:not(.name-align-h--center) { transform: translateY(-50%); }
+    }
+  }
+
+  &__content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; 
+    display: flex; 
+  }
+}

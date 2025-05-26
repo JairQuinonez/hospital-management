@@ -1,0 +1,81 @@
+// Variables
+$top-bar-height: 90px; // Altura estimada de la barra
+$top-bar-background: #ffffff;
+$top-bar-border-color: #e74c3c; // Rojo de la imagen
+$top-bar-border-height: 3px;
+
+$title-color: #34495e; // Un gris oscuro para el título
+$title-font-size: 1.8em; // Tamaño del título
+$title-font-weight: 700;
+
+$user-name-color: #95a5a6; // Gris claro para el nombre de usuario
+$user-name-font-size: 1.2em;
+$user-icon-size: 36px;
+$user-icon-color: #bdc3c7; // Color del placeholder del icono
+$user-icon-border-color: #bdc3c7; // Color del borde del icono
+$user-area-spacing: 10px; // Espacio entre nombre e icono
+
+$padding-horizontal: 25px;
+
+$primary-color: #5b9bd5;
+
+// Bloque principal: top-bar
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // Empuja el título a la izquierda y el área de usuario a la derecha
+  height: $top-bar-height;
+  background-color: $top-bar-background;
+  padding: 0 $padding-horizontal;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; // O la fuente de tu proyecto
+
+  // Elemento: Título
+  &__title {
+    margin: 0; // Quitar margen por defecto de h1
+    font-size: $title-font-size;
+    font-weight: $title-font-weight;
+    color: $title-color;
+    text-transform: uppercase; // Como en la imagen
+  }
+
+  // Elemento: Área del Usuario
+  &__user-area {
+    display: flex;
+    align-items: center;
+    cursor: pointer; // Indica que es clickeable
+    padding: 5px; // Pequeño padding para área de click
+    border-radius: 4px; // Opcional: para hover/focus
+
+    &:hover,
+    &:focus-visible { // Estilo para hover y foco (accesibilidad)
+      background-color: darken($top-bar-background, 5%);
+      outline: none; // Quitar outline por defecto y manejar con box-shadow si se quiere
+    }
+    &:focus-visible {
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.4); // Usar el color primario del sidebar
+    }
+  }
+
+  // Elemento: Nombre del Usuario
+  &__user-name {
+    font-size: $user-name-font-size;
+    color: $user-name-color;
+    margin-right: $user-area-spacing;
+  }
+
+  // Elemento: Icono del Usuario
+  &__user-icon {
+    width: $user-icon-size;
+    height: $user-icon-size;
+    fill: $user-icon-color; // Color del ícono SVG
+    background-color: #f0f0f0; // Un fondo ligero si el icono es solo un path
+    border: 1px solid $user-icon-border-color; // Borde circular como en la imagen
+    border-radius: 50%; // Para hacerlo circular
+    display: flex; // Para centrar el path del SVG si es necesario
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; // Para que el borde no aumente el tamaño
+    padding: 4px; // Espacio interno para el path del SVG
+  }
+}

@@ -1,0 +1,181 @@
+<form
+  [formGroup]="dynamicForm"
+  (ngSubmit)="onSubmit()"
+  class="dynamic-material-form"
+>
+  <div
+    class="dynamic-material-form__fields-container"
+    [style.grid-template-columns]="'repeat(' + formLayoutCols() + ', 1fr)'"
+  >
+    @for (field of fields(); track trackByFieldKey($index, field)) {
+    <div
+      class="dynamic-material-form__field-group"
+      [style.grid-column]="'span ' + (field.colSpan || 1)"
+    >
+      @if (isViewMode()) {
+      <div class="dynamic-material-form__view-field">
+        <div class="dynamic-material-form__view-label">{{ field.label }}</div>
+        <div class="dynamic-material-form__view-value-wrapper">
+          <span class="dynamic-material-form__view-value">
+            @if (initialData()?.[field.key] !== null &&
+            initialData()?.[field.key] !== undefined &&
+            initialData()?.[field.key] !== '') { @if (field.type === 'select') {
+            {{ getSelectedOptionLabel(field, initialData()?.[field.key]) }}
+            } @else if (field.type === 'date') {
+            {{ initialData()?.[field.key] | date:'dd/MM/yyyy' }}
+            <!-- Asumiendo que tienes DatePipe -->
+            } @else {
+            {{ initialData()?.[field.key] }}
+            } } @else {
+            <span class="dynamic-material-form__view-value--empty">-</span>
+            }
+          </span>
+        </div>
+      </div>
+      } @else {
+      <mat-form-field
+        [appearance]="fieldAppearance()"
+        class="dynamic-material-form__mat-field"
+      >
+        <mat-label>{{ field.label }}</mat-label>
+
+        @switch (field.type) { @case ('text') {
+        <input
+          matInput
+          [type]="field.type"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+        />
+        } @case ('number') {
+        <input
+          matInput
+          type="number"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+        />
+        } @case ('email') {
+        <input
+          matInput
+          type="email"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+        />
+        } @case ('password') {
+        <input
+          matInput
+          type="password"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+        />
+        } @case ('date') {
+        <ng-container>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [formControlName]="field.key"
+            [placeholder]="field.placeholder || 'dd/mm/yyyy'"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </ng-container>
+
+        } @case ('select') {
+        <mat-select
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+        >
+          @for (option of field.options || []; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+        } @case ('textarea') {
+        <textarea
+          matInput
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="5"
+        ></textarea>
+        } } @if (field.hint) {
+        <mat-hint>{{ field.hint }}</mat-hint>
+        } @if (dynamicForm.get(field.key)?.invalid &&
+        (dynamicForm.get(field.key)?.touched ||
+        dynamicForm.get(field.key)?.dirty)) {
+        <mat-error>
+          @if (dynamicForm.get(field.key)?.hasError('required')) { Este campo es
+          obligatorio. } @if (dynamicForm.get(field.key)?.hasError('email')) {
+          Formato de email inválido. } @if
+          (dynamicForm.get(field.key)?.hasError('minlength')) { Mínimo
+          {{
+          dynamicForm.get(field.key)?.errors?.['minlength'].requiredLength }}
+          caracteres. }
+          <!-- Más errores -->
+        </mat-error>
+        }
+      </mat-form-field>
+      }
+    </div>
+    }
+  </div>
+
+  @if (!isViewMode() && !loginGeneral() && !loginDoctor()) {
+  <div class="dynamic-material-form__actions">
+    @if (showCancelButton()) {
+    <button mat-stroked-button type="button" color="warn" (click)="onCancel()">
+      {{ cancelButtonText() }}
+    </button>
+    }
+
+    <button mat-flat-button type="submit" color="primary">
+      {{ submitButtonText() }}
+    </button>
+  </div>
+  } @if (loginGeneral()) {
+  <div class="dynamic-material-form__login-general">
+    <button type="submit" class="sign-in-btn">Acceder</button>
+    <div style="margin-top: 10px; margin-bottom: 10px">
+      <div class="forgot-password-link">
+        <a href="#">Olvide mi contraseña</a>
+      </div>
+      <div class="forgot-password-link">
+        <a href="/register">Resgistrate</a>
+      </div>
+    </div>
+  </div>
+  } @if (loginDoctor()) {
+  <div class="dynamic-material-form__login-doctor">
+    <button type="submit" class="sign-in-btn">Acceder</button>
+    <div style="margin-top: 10px; margin-bottom: 10px">
+      <div class="forgot-password-link">
+        <a href="#">Olvide mi contraseña</a>
+      </div>
+      <div class="forgot-password-link">
+        <a href="/register">Resgistrate</a>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center">
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="onLoginGoogle()"
+        
+      >
+        <div style="display: flex; align-items: center; gap: 10px">
+          <img
+          src="https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+          alt="Google logo"
+          style="width: 18px; height: 18px"
+        />
+        <span>Sign in with Google</span>
+        </div>
+      </button>
+    </div>
+  </div>
+  }
+</form>

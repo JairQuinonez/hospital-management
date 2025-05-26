@@ -1,0 +1,80 @@
+<app-table-view [data]="citasProgramadas" [columns]="columnasDeCitas" [showActionButton]="true"
+  actionButtonText="Cancelar" (actionClicked)="onCancelarCita($event)">
+</app-table-view>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h3>Usuarios (Sólo Vista)</h3>
+<app-table-view [data]="listaDeUsuarios" [columns]="columnasDeUsuarios" [showActionButton]="false">
+</app-table-view>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- <h2>Perfil de Usuario ({{ isEditMode ? 'Editar' : 'Vista' }})</h2>
+<button (click)="toggleEditMode()">
+  {{ isEditMode ? 'Ver Perfil' : 'Editar Perfil' }}
+</button>
+<hr>
+<app-medical-historial-form [fields]="userProfileFields" [initialData]="userData" [isViewMode]="!isEditMode"
+  [formLayoutCols]="2" (formSubmit)="onProfileSave($event)" (formCancel)="onProfileCancel()"
+  submitButtonText="Actualizar Perfil"></app-medical-historial-form>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h2>Perfil del Paciente</h2>
+<app-patient-avatar-upload [avatarUrl]="currentPatientAvatarUrl" [isViewMode]="isInReadOnlyMode"
+  acceptedFileTypes="application/pdf,image/jpeg,image/png" buttonText="Subir Documento"
+  (fileSelected)="handleFileUploaded($event)" (avatarClicked)="viewPatientAvatar()">
+</app-patient-avatar-upload>
+
+<button (click)="toggleMode()">
+  {{ isInReadOnlyMode ? 'Activar Modo Edición' : 'Activar Modo Vista' }}
+</button> -->
+
+<div class="profile-page-layout"> <!-- Contenedor principal para el layout -->
+
+  <div class="profile-page-layout__avatar-column">
+    <app-patient-avatar-upload
+      [avatarUrl]="currentPatientAvatarUrl"
+      [isViewMode]="!isEditMode"
+      acceptedFileTypes="application/pdf,image/jpeg,image/png"
+      buttonText="Subir Documento"
+      (fileSelected)="handleFileUploaded($event)"
+      (avatarClicked)="viewPatientAvatar()">
+    </app-patient-avatar-upload>
+  </div>
+
+  <div class="profile-page-layout__form-column">
+    <app-medical-historial-form
+      [fields]="userProfileFields"
+      [initialData]="userData"
+      [isViewMode]="!isEditMode"
+      [formLayoutCols]="2"
+      (formSubmit)="onProfileSave($event)"
+      (formCancel)="onProfileCancel()"
+      submitButtonText="Actualizar Perfil">
+    </app-medical-historial-form>
+  </div>
+
+</div>
+
+<!-- Botón de ejemplo para cambiar modo (fuera del layout principal si afecta a ambos) -->
+<div style="margin-top: 20px; text-align: center;">
+  <button (click)="toggleEditMode()" class="mode-toggle-button">
+    {{ !isEditMode ? 'Activar Modo Edición' : 'Activar Modo Vista' }}
+  </button>
+</div>

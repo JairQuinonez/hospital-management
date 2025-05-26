@@ -1,0 +1,21 @@
+<div class="custom-tab-container">
+  <mat-tab-group
+    class="custom-tabs"
+    animationDuration="500ms"
+    mat-stretch-tabs="false"
+    preserveContent
+  >
+    <mat-tab label="Historial de citas">
+      <ng-template matTabContent>
+        <div>
+          <app-table-view
+            [data]="appointmentsProgramed"
+            [columns]="columns"
+            [showActionButton]="false"
+          >
+          </app-table-view>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

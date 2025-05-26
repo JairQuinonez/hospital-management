@@ -1,0 +1,52 @@
+<aside class="sidebar" [class.sidebar--collapsed]="!isMenuOpen">
+  <div class="sidebar__header">
+    <a class="sidebar__logo-link" aria-label="Ir a la página de inicio">
+      <img src="assets/svgs/logo_clinic.svg" alt="Mastery Hub Logo" class="sidebar__logo" />
+    </a>
+    <button class="sidebar__toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen"
+      aria-label="Abrir/Cerrar menú">
+      <span class="sidebar__toggle-bar"></span>
+      <span class="sidebar__toggle-bar"></span>
+      <span class="sidebar__toggle-bar"></span>
+    </button>
+  </div>
+
+  <nav class="sidebar__nav">
+    <h2 class="sidebar__menu-title">
+      <span class="sidebar__menu-title-text">Menu</span>
+    </h2>
+    <ul class="sidebar__menu-list">
+      @for (item of menuItems(); track $index) {
+      <li class="sidebar__menu-item" 
+      [class.sidebar__menu-item--active]="item.label === activeItemLabel && isMenuOpen"
+        [class.sidebar__menu-item--active-collapsed]="item.label === activeItemLabel && !isMenuOpen"
+        (click)="selectItem(item.label, item.title)" tabindex="0" role="menuitem" [attr.aria-label]="item.label"
+        (keydown.enter)="selectItem(item.label, item.title)" (keydown.space)="selectItem(item.label, item.title)">
+        <a [routerLink]="item.route" class="sidebar__menu-link"
+          [class.sidebar__menu-link--active]="item.label === activeItemLabel" [title]="isMenuOpen ? '' : item.label">
+          <svg class="sidebar__menu-icon" [attr.viewBox]="item.viewBox || '0 0 24 24'"
+            xmlns="http://www.w3.org/2000/svg">
+            <path [attr.d]="item.iconSvgPath" fill="currentColor" />
+          </svg>
+          <span class="sidebar__menu-label">{{ item.label }}</span>
+        </a>
+      </li>
+      }
+
+    </ul>
+  </nav>
+
+  <hr class="sidebar__separator">
+
+  <div class="sidebar__footer">
+    <span class="sidebar__hospital-name">{{ hospitalName }}</span>
+    <button class="sidebar__logout-button" (click)="logout()" aria-label="Cerrar sesión"
+      [title]="isMenuOpen ? '' : 'Cerrar sesión'">
+      <svg class="sidebar__logout-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+      </svg>
+    </button>
+  </div>
+</aside>

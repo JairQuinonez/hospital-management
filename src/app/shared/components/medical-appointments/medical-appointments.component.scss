@@ -1,0 +1,85 @@
+// Variables locales para el layout (opcional)
+$layout-gap: 30px; // Espacio entre columnas
+$avatar-column-max-width: 200px; // Un ancho máximo para la columna del avatar, si se desea
+
+.profile-page-layout {
+  display: flex;
+  flex-wrap: wrap; // Permite que las columnas se apilen en pantallas pequeñas si es necesario
+  gap: $layout-gap; // Espacio entre las columnas (y filas si se envuelven)
+  align-items: flex-start; // Alinea los items al inicio del eje transversal (verticalmente)
+                           // Esto es útil si el avatar es más corto que el formulario.
+
+  &__avatar-column {
+    // El componente app-patient-avatar-upload ya tiene un tamaño y alineación interna.
+    // Aquí podemos controlar el espacio que ocupa esta columna.
+    flex-shrink: 0; // Evita que esta columna se encoja si no hay suficiente espacio
+    // Puedes darle un ancho fijo o basado en flexión:
+    // Opción 1: Ancho fijo o máximo (si el componente interno no lo restringe)
+    // width: $avatar-column-max-width;
+    // max-width: 100%; // Para asegurar que no desborde en pantallas muy pequeñas
+
+    // Opción 2: Dejar que el contenido del componente avatar defina su ancho,
+    // pero que no crezca más allá de cierto punto.
+    // El componente patient-avatar-upload ya tiene un `width` en su elemento raíz
+    // a través de $avatar-size, por lo que puede que no necesites mucho aquí.
+
+    // A veces es útil alinear el contenido del avatar un poco hacia abajo
+    // si los labels del formulario hacen que el formulario empiece más abajo.
+    // padding-top: 20px; // Ajusta según sea necesario
+  }
+
+  &__form-column {
+    flex-grow: 1; // El formulario tomará el espacio restante
+    min-width: 300px; // Un ancho mínimo para el formulario antes de que se apile o se desborde
+                      // (si flex-wrap está activo y hay suficiente espacio horizontal)
+  }
+}
+
+// Botón de ejemplo para cambiar modo, para que se vea bien
+.mode-toggle-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+
+// --- Media Query para Responsividad (Opcional pero recomendado) ---
+// Si quieres que en pantallas más pequeñas las columnas se apilen una encima de la otra.
+@media (max-width: 768px) { // Ajusta este breakpoint según tus necesidades
+  .profile-page-layout {
+    flex-direction: column; // Apila las columnas verticalmente
+    align-items: center; // Centra las columnas apiladas
+
+    &__avatar-column {
+      width: auto; // Permite que el componente avatar use su ancho natural
+      margin-bottom: $layout-gap; // Espacio debajo del avatar cuando está apilado
+      padding-top: 0; // Resetear padding si se añadió
+    }
+
+    &__form-column {
+      width: 100%; // El formulario ocupa todo el ancho
+      min-width: unset; // Quitar el min-width para que se ajuste
+    }
+  }
+}
+
+@media (max-width: 992px) and (min-width: 769px) {
+    // Un breakpoint intermedio si necesitas ajustes específicos
+    .profile-page-layout {
+        &__avatar-column {
+            // Por ejemplo, si quieres que la columna del avatar tome un tercio
+            // y el formulario dos tercios en este rango de tamaño.
+            // flex-basis: 30%;
+        }
+        &__form-column {
+            // flex-basis: calc(70% - #{$layout-gap});
+        }
+    }
+}

@@ -1,4 +1,19 @@
 
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light, // light, dark, contrast
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 * {
@@ -10,3 +25,32 @@
 html {
   font-family: "Inter", "Inter Fallback";
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// src/styles.scss
+
+
+// 2. Asegúrate de que tu tema de Angular Material esté definido e incluido ANTES de esto.
+// ... (tu definición e inclusión de @include mat.all-component-themes($my-theme); va aquí) ...
+
+// 3. Aplica el override para el color de fondo de los form-fields con appearance="fill"
+:root { // Para aplicar globalmente a todos los mat-form-field
+  @include mat.form-field-overrides((
+    // Clave para el color de fondo del contenedor en appearance="fill"
+    filled-container-color: transparent,
+
+    // Opcional: Puedes ajustar otros colores relacionados si es necesario,
+    // ya que un fondo transparente puede afectar la legibilidad de otros elementos.
+    // Por ejemplo, el color del texto del input o del placeholder si el fondo de la página es oscuro.
+    // filled-input-value-text-color: #333, // Si necesitas asegurar que el texto sea visible
+    // filled-label-text-color: #555,      // Color del label antes de flotar
+
+    // También considera los estados de hover y focus para la línea inferior,
+    // ya que el fondo no dará tanto contraste.
+    // filled-hover-active-indicator-color: rgba(0, 0, 0, 0.6), // Línea más oscura al hacer hover
+    // filled-focus-active-indicator-color: mat.get-color-from-palette($my-primary-palette, 500) // Usar color primario del tema
+  ));
+}
+
+// Otros estilos globales de tu aplicación...

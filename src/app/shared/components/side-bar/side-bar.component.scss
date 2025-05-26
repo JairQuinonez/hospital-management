@@ -1,0 +1,323 @@
+// Variables (ajusta según tus preferencias)
+$sidebar-background: #f8f9fa;
+$sidebar-width: 260px;
+$sidebar-width-collapsed: 80px;
+
+$primary-color: #5b9bd5; // Azul para el ítem activo (tomado de la imagen)
+$primary-color-text: #ffffff;
+
+$logo-main-color: #2563eb; // Color principal del logo
+$logo-leaf-color: #34d399; // Color de las hojas del logo
+
+$text-color: #333333;
+$text-color-light: #555555;
+$menu-title-color: #222222;
+
+$separator-color: #dee2e6;
+$footer-text-color: #6c757d;
+$icon-color-logout: #f0ad4e; // Naranja/amarillo para el ícono de logout
+
+$border-radius: 8px;
+$icon-size: 24px;
+$logo-collapsed-width: 40px; // Ancho del logo cuando está colapsado
+
+$transition-duration: 0.3s;
+$text-fade-duration: 0.2s;
+$text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de la contracción
+
+// Mixin para transiciones de texto (opacidad y visibilidad)
+@mixin text-transition($opacity-duration, $visibility-delay) {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity $opacity-duration ease-in-out $visibility-delay,
+              visibility 0s linear $visibility-delay,
+              width $opacity-duration ease-in-out; // Para que el espacio se reduzca
+}
+
+@mixin hidden-text-styles() {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  // La transición está definida en el elemento base para que la reaparición también sea animada
+  transition: opacity $text-fade-duration ease-out,
+              visibility 0s linear $text-fade-duration,
+              width $text-fade-duration ease-in-out;
+}
+
+
+// Bloque principal: sidebar
+.sidebar {
+  width: $sidebar-width;
+  height: 100vh;
+  background-color: $sidebar-background;
+  padding: 20px 15px; // Padding general del sidebar
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: width $transition-duration ease-in-out, padding $transition-duration ease-in-out;
+  overflow-x: hidden;
+
+  // Elemento: Encabezado del sidebar
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    min-height: 50px; // Altura mínima para el logo y el botón
+    width: 100%; // Ocupa el ancho del sidebar (que cambia)
+    box-sizing: border-box;
+    // No necesita padding propio si el sidebar ya tiene padding general
+  }
+
+  // Elemento: Enlace del Logo
+  &__logo-link {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  // Elemento: Logo
+  &__logo {
+    width: 60px;
+    height: auto;
+    transition: width $transition-duration ease-in-out;
+  }
+
+  // Elemento: Botón de hamburguesa (toggle)
+  &__toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px; // Área de click
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    // Importante: No aplicar estilos de ocultación aquí
+    &-bar {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $primary-color;
+      border-radius: 3px;
+      transition: all $transition-duration ease-in-out;
+    }
+  }
+
+  // Elemento: Navegación
+  &__nav {
+    flex-grow: 1;
+  }
+
+  // Elemento: Título del menú
+  &__menu-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: $menu-title-color;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-left: 5px;
+    height: 24px;
+    overflow: hidden;
+    transition: padding-left $transition-duration ease-in-out;
+
+    &-text {
+      @include text-transition($text-fade-duration, $text-fade-delay);
+    }
+  }
+
+  // Elemento: Lista del menú
+  &__menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  // Elemento: Ítem del menú
+  &__menu-item {
+    margin-bottom: 8px;
+    border-radius: $border-radius;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+    outline: none;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.5);
+    }
+
+    &--active {
+      background-color: $primary-color;
+      .sidebar__menu-link { color: $primary-color-text; }
+      .sidebar__menu-icon { color: $primary-color-text; }
+    }
+
+    &--active-collapsed {
+      background-color: transparent;
+      .sidebar__menu-icon { color: $primary-color; }
+    }
+  }
+
+  // Elemento: Enlace del menú
+  &__menu-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: $text-color-light;
+    border-radius: $border-radius;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out, padding $transition-duration ease-in-out, color 0.2s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:hover:not(.sidebar__menu-link--active) {
+      background-color: darken($sidebar-background, 5%);
+      color: darken($text-color-light, 10%);
+      .sidebar__menu-icon { color: darken($text-color-light, 10%); }
+    }
+  }
+
+  // Elemento: Ícono del menú
+  &__menu-icon {
+    width: $icon-size;
+    height: $icon-size;
+    min-width: $icon-size;
+    margin-right: 12px;
+    color: $text-color-light;
+    transition: margin-right $transition-duration ease-in-out, color 0.2s ease-in-out;
+    flex-shrink: 0;
+  }
+
+  // Elemento: Etiqueta de texto del menú
+  &__menu-label {
+    @include text-transition($text-fade-duration, $text-fade-delay);
+  }
+
+  // Elemento: Separador
+  &__separator {
+    border: none;
+    border-top: 1px solid $separator-color;
+    margin: auto 0 20px 0;
+  }
+
+  // Elemento: Pie de página del sidebar
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    min-height: 40px;
+    width: 100%; // Ocupa el ancho del sidebar
+    box-sizing: border-box;
+  }
+
+  // Elemento: Nombre del hospital
+  &__hospital-name {
+    font-size: 0.85em;
+    color: $footer-text-color;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    @include text-transition($text-fade-duration, $text-fade-delay);
+  }
+
+  // Elemento: Botón de logout
+  &__logout-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: $icon-color-logout;
+    transition: padding $transition-duration ease-in-out;
+
+    &:focus-visible {
+      outline: 2px solid $icon-color-logout;
+      outline-offset: 1px;
+    }
+  }
+
+  // Elemento: Ícono de logout
+  &__logout-icon {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    fill: currentColor;
+    transition: margin-right $transition-duration ease-in-out;
+    flex-shrink: 0;
+  }
+
+  // Elemento: Etiqueta de logout
+  &__logout-label {
+    margin-left: 8px;
+    font-size: 0.9em;
+    @include text-transition($text-fade-duration, $text-fade-delay);
+  }
+
+
+  // Modificador: Sidebar colapsado
+  &--collapsed {
+    width: $sidebar-width-collapsed;
+    padding: 20px 10px; // Reducir padding horizontal cuando está colapsado
+
+    .sidebar__logo {
+      width: $logo-collapsed-width; // Hacer el logo más pequeño
+    }
+
+    // El .sidebar__header y .sidebar__toggle NO necesitan estilos específicos aquí
+    // para ocultarse, ya que deben permanecer visibles.
+    // `justify-content: space-between` en el header debería seguir funcionando
+    // para mantener el logo (ahora más pequeño) a la izquierda y el toggle a la derecha.
+
+    .sidebar__menu-title {
+      padding-left: 0;
+      justify-content: center;
+      &-text {
+        @include hidden-text-styles();
+      }
+    }
+
+    .sidebar__menu-link {
+      justify-content: center;
+      padding: 12px 10px;
+    }
+
+    .sidebar__menu-icon {
+      margin-right: 0;
+    }
+
+    .sidebar__menu-label,
+    .sidebar__hospital-name,
+    .sidebar__logout-label {
+      @include hidden-text-styles();
+    }
+
+    // Resetear el estilo activo del modo expandido y aplicar el de colapsado
+    .sidebar__menu-item--active {
+        background-color: transparent;
+        .sidebar__menu-link { color: $text-color-light; }
+        .sidebar__menu-icon { color: $text-color-light; }
+    }
+    // .sidebar__menu-item--active-collapsed ya está definido arriba y funcionará
+
+    .sidebar__footer {
+      justify-content: center; // Centrar el botón de logout (que solo será un ícono)
+    }
+
+    .sidebar__logout-button {
+      padding: 5px; // Solo padding para el ícono
+    }
+
+    .sidebar__logout-icon {
+      margin-right: 0;
+    }
+  }
+}

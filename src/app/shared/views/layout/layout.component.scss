@@ -1,0 +1,30 @@
+.app-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .main-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  app-sidebar {
+    // El componente app-sidebar gestiona su propio ancho y transiciones.
+    // Aquí solo se le trata como un ítem flex.
+    flex-shrink: 0; // Para que no se encoja más allá de su width definido.
+  }
+  
+  app-top-bar {
+    // El componente app-top-bar gestiona su propia altura y estilos internos.
+    flex-shrink: 0; // Para que mantenga su altura.
+  }
+  
+  .page-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 25px;
+    background-color: #f0f2f5; // Un color de fondo para el área de contenido
+  }

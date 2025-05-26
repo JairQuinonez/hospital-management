@@ -1,0 +1,103 @@
+// Variables locales
+$avatar-size: 200px;
+$avatar-bg-color: #e0f2fe; // Azul claro de fondo del círculo en la imagen
+$avatar-placeholder-text-color: #4a5568;
+$avatar-border-color: #bfdbfe; // Opcional: si quieres un borde sutil
+
+$button-bg-color: #007bff; // Azul del botón
+$button-text-color: #ffffff;
+$button-hover-bg-color: #0056b3;
+$button-border-radius: 6px;
+$button-icon-spacing: 8px;
+
+.patient-avatar-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; // Espacio entre avatar y botón
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  &__avatar-wrapper {
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: 50%;
+    background-color: $avatar-bg-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid $avatar-border-color; // Borde opcional
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+    &:focus-visible {
+      outline: 2px solid $button-bg-color;
+      outline-offset: 2px;
+    }
+  }
+
+  &__avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Asegura que la imagen cubra el círculo sin distorsionarse
+  }
+
+  &__avatar-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    svg {
+      // El color se define en el fill del SVG en el HTML
+      margin-bottom: 5px;
+    }
+  }
+
+  &__placeholder-text {
+    font-size: 0.8rem;
+    color: $avatar-placeholder-text-color;
+    font-weight: 500;
+  }
+
+  &__upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: $button-bg-color;
+    color: $button-text-color;
+    border: none;
+    border-radius: $button-border-radius;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.25);
+
+    &:hover {
+      background-color: $button-hover-bg-color;
+    }
+    &:focus-visible {
+      outline: 2px solid darken($button-bg-color, 15%);
+      outline-offset: 2px;
+    }
+  }
+
+  &__upload-icon {
+    margin-right: $button-icon-spacing;
+    // El color es `currentColor` por lo que hereda del botón
+  }
+
+  &__file-input {
+    display: none; // El input de archivo real está oculto
+  }
+}
