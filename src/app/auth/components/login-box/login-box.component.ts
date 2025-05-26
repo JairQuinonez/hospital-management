@@ -69,11 +69,12 @@ export class LoginBoxComponent implements OnInit {
 
   onLoginGoogle() {
     console.log('onSubmit google');
-    //this.authService.login();
+    this.authService.login();
   }
 
   getAndSetData(redirectUrl: string, userType: string, formData: Record<string, any>) {
     localStorage.setItem('userType', userType);
+    this.localStorageService.setItem('role', userType);
     const params: ValdiateUserDTO = {
       email: formData['email'],
       password: formData['password']
@@ -115,22 +116,12 @@ export class LoginBoxComponent implements OnInit {
 
   onSubmitForm(formData: Record<string, any>) {
     this.loaderService.show('Validando...');
-    console.log('Datos de registro:', formData);
     if (this.isDoctorLogin()) {
       this.getAndSetData('/layout-dr/appointments-dr', 'dr', formData);
 
     } else if (this.isGeneralLogin()) {
       this.getAndSetData('/layout/appointments', 'pa', formData);
     }
-    /* this.trySend = true;
-    this.markAsTouched();
-    if (this.loginForm.valid) {
-      console.log('Login form is valid');
-      if (this.validateUserInfo()) {
-        //this.router.navigate(['/role-selection']);
-      }
-
-    } */
   }
 
 

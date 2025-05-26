@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
 
   constructor () {
-    this.setDefaultUserInfo();  
+    //this.setDefaultUserInfo();  
   }
 
   setItem(key: string, value: any): void {

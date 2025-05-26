@@ -17,6 +17,7 @@ import { MedicalHistoryDoctorComponent } from './shared/views/medical-history-do
 import { AppointmentsDoctorComponent } from './shared/views/appointments-doctor/appointments-doctor.component';
 import { GeneralLoginComponent } from './auth/views/general-login/general-login.component';
 import { UserWrapperComponent } from './shared/views/user-wrapper/user-wrapper.component';
+import { roleGuard } from './auth/guards/role.guard';
 
 export const routes: Routes = [
   { path: 'login', component: GeneralLoginComponent },
@@ -27,40 +28,33 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'layout', component: UserWrapperComponent,
+    path: 'layout', 
+    component: UserWrapperComponent,
+    canActivate: [AuthGuard, roleGuard],
     children: [
       { path: 'historial-pa', component: MedicalHistoryComponent },
       { path: 'appointments', component: AppointmentsComponent },
-    ]
+    ],
+    data:{
+      expectedRoles: ['pa']
+    }
   },
   {
     path: 'layout-dr', component: UserWrapperComponent,
+    canActivate: [roleGuard],
     children:[
       { path: 'historial-dr', component: MedicalHistoryDoctorComponent },
       { path: 'appointments-dr', component: AppointmentsDoctorComponent },
 
-    ]
+    ],
+    data:{
+      expectedRoles: ['dr']
+    }
   },
 
   {
     path: 'register',
     component: RegisterViewComponent,
-  },
-  {
-    path: 'dr',
-    component: DoctorDashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
-
-  },
-  {
-    path: 'patient',
-    component: PatientDashboardComponent,
-    canActivate: [AuthGuard],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 

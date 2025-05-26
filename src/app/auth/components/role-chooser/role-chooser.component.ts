@@ -10,7 +10,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
   styleUrl: './role-chooser.component.scss'
 })
 export class RoleChooserComponent {
-  selectedRole: 'doctor' | 'patient' | null = null;
+  selectedRole: 'dr' | 'pa' | null = null;
   constructor(
     private router: Router,
     private localStorageService: LocalStorageService,
@@ -23,7 +23,7 @@ export class RoleChooserComponent {
   }
 
 
-  selectRole(role: 'doctor' | 'patient'): void {
+  selectRole(role: 'dr' | 'pa'): void {
     this.selectedRole = role;
     this.localStorageService.setItem('role', role);
     if (this.localStorageService.getAuthValidation()) {

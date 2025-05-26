@@ -1,5 +1,7 @@
 import { Component, input, OnInit, output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../auth/services/auth.service';
+import { LocalStorageService } from '../../../auth/services/local-storage.service';
 
 export interface MenuItem {
   label: string;
@@ -27,7 +29,10 @@ export class SideBarComponent implements OnInit {
   hospitalName: string = 'BIG TOWN HOSPITAL';
   isMenuOpen: boolean = true; // Para un futuro control del menú hamburguesa
 
-  constructor(private router: Router,) { 
+  constructor(private router: Router,
+    private authService: AuthService,
+    private localStorageService: LocalStorageService
+  ) { 
     
   }
 
@@ -50,10 +55,12 @@ export class SideBarComponent implements OnInit {
   logout(): void {
     console.log('Logout action triggered');
     if (localStorage.getItem('userType') === 'dr') {
-      this.router.navigate(['/login-dr']);
+      this.authService.logout();
+      //this.router.navigate(['/login-dr']);
 
     } else {
       this.router.navigate(['/login']);
+      this.localStorageService.clear();
 
     }
   }
