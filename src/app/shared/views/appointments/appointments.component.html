@@ -1,23 +1,40 @@
 <div class="custom-tab-container">
-  <mat-tab-group class="custom-tabs" animationDuration="500ms" mat-stretch-tabs="false" preserveContent>
+  <mat-tab-group
+    class="custom-tabs"
+    animationDuration="500ms"
+    mat-stretch-tabs="false"
+    preserveContent
+  >
     <mat-tab label="Solicitar Cita">
       <ng-template matTabContent>
         <div class="tab-content-wrapper">
-          @if(!isloadindDoctors){
-            <app-medical-historial-form class="register-page__form" [fields]="registerFields"
-            [initialData]="initialRegisterData" [isViewMode]="false" [formLayoutCols]="2" submitButtonText="Agendar"
-            [showCancelButton]="false" cancelButtonText="Cancelar" (formSubmit)="onSubmit($event)">
+          @if(!wasSubmited) { @if(!isloadindDoctors){
+          <app-medical-historial-form
+            class="register-page__form"
+            [fields]="registerFields"
+            [initialData]="initialRegisterData"
+            [isViewMode]="false"
+            [formLayoutCols]="2"
+            submitButtonText="Agendar"
+            [showCancelButton]="false"
+            cancelButtonText="Cancelar"
+            (formSubmit)="onSubmit($event)"
+          >
           </app-medical-historial-form>
-          }
-          
+          } }
         </div>
       </ng-template>
     </mat-tab>
     <mat-tab label="Historial de citas">
       <ng-template matTabContent>
-        <div >
-          <app-table-view [data]="appointmentsProgramed" [columns]="columns" [showActionButton]="true"
-            actionButtonText="Cancelar" (actionClicked)="onCancelarCita($event)">
+        <div>
+          <app-table-view
+            [data]="appointmentsProgramed"
+            [columns]="columns"
+            [showActionButton]="true"
+            actionButtonText="Cancelar"
+            (actionClicked)="onCancelarCita($event)"
+          >
           </app-table-view>
         </div>
       </ng-template>

@@ -13,8 +13,8 @@ export interface FormField {
   initialValue?: any;
   placeholder?: string;
   validators?: ValidatorFn | ValidatorFn[];
-  options?: FormFieldOption[]; // Para tipo 'select'
-  readonly?: boolean; // Para campos individuales en modo no-vista
-  colSpan?: number; // Para layout en grid (ej. 1 o 2 columnas)
-  hint?: string; // Texto de ayuda o formato debajo del label (como dd/mm/yyyy)
+  options?: FormFieldOption[];
+  readonly?: boolean; 
+  colSpan?: number; 
+  hint?: string; 
 }

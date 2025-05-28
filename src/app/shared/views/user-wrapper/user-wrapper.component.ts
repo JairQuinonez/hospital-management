@@ -22,7 +22,7 @@ export class UserWrapperComponent implements OnInit {
   }
   menuItems: MenuItem[] = [];
   ngOnInit(): void {
-    this.userName = this.localStorageService.getItem<IUserInfo>('userInfo')?.name ?? 'Test NOO User';
+    this.userName = this.localStorageService.getItem<IUserInfo>('userInfo')?.given_name ?? 'Test NOO User';
 
     if (this.user === 'dr') {
       this.menuItems = [

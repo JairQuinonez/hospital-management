@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { MedicalHistoryDTO, MedicalHistoryDTOResponse, MedicalHistoryRequestDTO } from '../interfaces/medical-history.interface';
 import { Observable } from 'rxjs';
 import { UserDTOResponse } from '../interfaces/user.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedicalHistoryService {
 
-  private mainUrl = 'http://localhost:8080/historia-clinica';
+  private mainUrl = `${environment.apiUrl}/historia-clinica`;
 
   constructor(
     private http: HttpClient

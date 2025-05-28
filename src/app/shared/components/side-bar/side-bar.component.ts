@@ -7,8 +7,8 @@ export interface MenuItem {
   label: string;
   route: string;
   title: string;
-  iconSvgPath: string; // Para la ruta 'd' de un SVG <path>
-  viewBox?: string;     // Opcional, si no es el estándar 24x24
+  iconSvgPath: string; 
+  viewBox?: string;     
 }
 
 
@@ -25,9 +25,9 @@ export class SideBarComponent implements OnInit {
 
 
 
-  activeItemLabel: string = 'Citas'; // Para marcar el ítem activo
+  activeItemLabel: string = 'Citas'; 
   hospitalName: string = 'BIG TOWN HOSPITAL';
-  isMenuOpen: boolean = true; // Para un futuro control del menú hamburguesa
+  isMenuOpen: boolean = true; 
 
   constructor(private router: Router,
     private authService: AuthService,
@@ -49,14 +49,13 @@ export class SideBarComponent implements OnInit {
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
     console.log('Toggle menu clicked');
-    // Implementar lógica para mostrar/ocultar menú si es necesario (ej. en móviles)
+    
   }
 
   logout(): void {
     console.log('Logout action triggered');
     if (localStorage.getItem('userType') === 'dr') {
       this.authService.logout();
-      //this.router.navigate(['/login-dr']);
 
     } else {
       this.router.navigate(['/login']);

@@ -4,13 +4,14 @@ import { Appointments, AppointmentsDTO, AppointmentsDTOResponse } from '../inter
 import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { DoctorService } from './doctor.service';
 import { DoctorDTOResponse, DorctorDTO } from '../interfaces/doctor.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointsmentsService {
 
-  private mainUrl = 'http://localhost:8080/citas-medicas';
+  private mainUrl = `${environment.apiUrl}/citas-medicas`;
 
   constructor(
     private http: HttpClient,

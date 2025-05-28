@@ -1,13 +1,13 @@
-// Variables (ajusta según tus preferencias)
+
 $sidebar-background: #f8f9fa;
 $sidebar-width: 260px;
 $sidebar-width-collapsed: 80px;
 
-$primary-color: #5b9bd5; // Azul para el ítem activo (tomado de la imagen)
+$primary-color: #5b9bd5; 
 $primary-color-text: #ffffff;
 
-$logo-main-color: #2563eb; // Color principal del logo
-$logo-leaf-color: #34d399; // Color de las hojas del logo
+$logo-main-color: #2563eb; 
+$logo-leaf-color: #34d399; 
 
 $text-color: #333333;
 $text-color-light: #555555;
@@ -15,23 +15,23 @@ $menu-title-color: #222222;
 
 $separator-color: #dee2e6;
 $footer-text-color: #6c757d;
-$icon-color-logout: #f0ad4e; // Naranja/amarillo para el ícono de logout
+$icon-color-logout: #f0ad4e; 
 
 $border-radius: 8px;
 $icon-size: 24px;
-$logo-collapsed-width: 40px; // Ancho del logo cuando está colapsado
+$logo-collapsed-width: 40px; 
 
 $transition-duration: 0.3s;
 $text-fade-duration: 0.2s;
-$text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de la contracción
+$text-fade-delay: 0.1s; 
 
-// Mixin para transiciones de texto (opacidad y visibilidad)
+
 @mixin text-transition($opacity-duration, $visibility-delay) {
   opacity: 1;
   visibility: visible;
   transition: opacity $opacity-duration ease-in-out $visibility-delay,
               visibility 0s linear $visibility-delay,
-              width $opacity-duration ease-in-out; // Para que el espacio se reduzca
+              width $opacity-duration ease-in-out; 
 }
 
 @mixin hidden-text-styles() {
@@ -40,19 +40,18 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
   width: 0;
   overflow: hidden;
   white-space: nowrap;
-  // La transición está definida en el elemento base para que la reaparición también sea animada
   transition: opacity $text-fade-duration ease-out,
               visibility 0s linear $text-fade-duration,
               width $text-fade-duration ease-in-out;
 }
 
 
-// Bloque principal: sidebar
+
 .sidebar {
   width: $sidebar-width;
   height: 100vh;
   background-color: $sidebar-background;
-  padding: 20px 15px; // Padding general del sidebar
+  padding: 20px 15px; 
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -60,43 +59,43 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
   transition: width $transition-duration ease-in-out, padding $transition-duration ease-in-out;
   overflow-x: hidden;
 
-  // Elemento: Encabezado del sidebar
+
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
-    min-height: 50px; // Altura mínima para el logo y el botón
-    width: 100%; // Ocupa el ancho del sidebar (que cambia)
+    min-height: 50px;
+    width: 100%; 
     box-sizing: border-box;
-    // No necesita padding propio si el sidebar ya tiene padding general
+    
   }
 
-  // Elemento: Enlace del Logo
+  
   &__logo-link {
     display: inline-block;
     line-height: 0;
   }
 
-  // Elemento: Logo
+
   &__logo {
     width: 60px;
     height: auto;
     transition: width $transition-duration ease-in-out;
   }
 
-  // Elemento: Botón de hamburguesa (toggle)
+  
   &__toggle {
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 5px; // Área de click
+    padding: 5px; 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
     height: 25px;
-    // Importante: No aplicar estilos de ocultación aquí
+    
     &-bar {
       display: block;
       width: 100%;
@@ -107,12 +106,12 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
     }
   }
 
-  // Elemento: Navegación
+  
   &__nav {
     flex-grow: 1;
   }
 
-  // Elemento: Título del menú
+  
   &__menu-title {
     display: flex;
     align-items: center;
@@ -131,14 +130,14 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
     }
   }
 
-  // Elemento: Lista del menú
+  
   &__menu-list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  // Elemento: Ítem del menú
+  
   &__menu-item {
     margin-bottom: 8px;
     border-radius: $border-radius;
@@ -162,7 +161,7 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
     }
   }
 
-  // Elemento: Enlace del menú
+  
   &__menu-link {
     display: flex;
     align-items: center;
@@ -182,7 +181,7 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
     }
   }
 
-  // Elemento: Ícono del menú
+  
   &__menu-icon {
     width: $icon-size;
     height: $icon-size;
@@ -193,30 +192,30 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
     flex-shrink: 0;
   }
 
-  // Elemento: Etiqueta de texto del menú
+  
   &__menu-label {
     @include text-transition($text-fade-duration, $text-fade-delay);
   }
 
-  // Elemento: Separador
+  
   &__separator {
     border: none;
     border-top: 1px solid $separator-color;
     margin: auto 0 20px 0;
   }
 
-  // Elemento: Pie de página del sidebar
+  
   &__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 15px;
     min-height: 40px;
-    width: 100%; // Ocupa el ancho del sidebar
+    width: 100%; 
     box-sizing: border-box;
   }
 
-  // Elemento: Nombre del hospital
+  
   &__hospital-name {
     font-size: 0.85em;
     color: $footer-text-color;
@@ -226,7 +225,7 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
     @include text-transition($text-fade-duration, $text-fade-delay);
   }
 
-  // Elemento: Botón de logout
+  
   &__logout-button {
     background: transparent;
     border: none;
@@ -245,7 +244,7 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
     }
   }
 
-  // Elemento: Ícono de logout
+  
   &__logout-icon {
     width: 22px;
     height: 22px;
@@ -255,7 +254,7 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
     flex-shrink: 0;
   }
 
-  // Elemento: Etiqueta de logout
+  
   &__logout-label {
     margin-left: 8px;
     font-size: 0.9em;
@@ -263,19 +262,14 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
   }
 
 
-  // Modificador: Sidebar colapsado
+  
   &--collapsed {
     width: $sidebar-width-collapsed;
-    padding: 20px 10px; // Reducir padding horizontal cuando está colapsado
+    padding: 20px 10px; 
 
     .sidebar__logo {
-      width: $logo-collapsed-width; // Hacer el logo más pequeño
+      width: $logo-collapsed-width; 
     }
-
-    // El .sidebar__header y .sidebar__toggle NO necesitan estilos específicos aquí
-    // para ocultarse, ya que deben permanecer visibles.
-    // `justify-content: space-between` en el header debería seguir funcionando
-    // para mantener el logo (ahora más pequeño) a la izquierda y el toggle a la derecha.
 
     .sidebar__menu-title {
       padding-left: 0;
@@ -300,20 +294,20 @@ $text-fade-delay: 0.1s; // Retraso para que el texto se desvanezca después de l
       @include hidden-text-styles();
     }
 
-    // Resetear el estilo activo del modo expandido y aplicar el de colapsado
+    
     .sidebar__menu-item--active {
         background-color: transparent;
         .sidebar__menu-link { color: $text-color-light; }
         .sidebar__menu-icon { color: $text-color-light; }
     }
-    // .sidebar__menu-item--active-collapsed ya está definido arriba y funcionará
+    
 
     .sidebar__footer {
-      justify-content: center; // Centrar el botón de logout (que solo será un ícono)
+      justify-content: center; 
     }
 
     .sidebar__logout-button {
-      padding: 5px; // Solo padding para el ícono
+      padding: 5px; 
     }
 
     .sidebar__logout-icon {

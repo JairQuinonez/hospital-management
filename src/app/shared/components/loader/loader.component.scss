@@ -1,10 +1,10 @@
-// Variables locales para el loader
-$loader-overlay-bg: rgba(255, 255, 255, 0.7); // Fondo semitransparente
+
+$loader-overlay-bg: rgba(255, 255, 255, 0.7); 
 $loader-message-color: #000;
-$loader-spinner-color: var(--mat-progress-spinner-active-indicator-color, #007bff); // Usa la variable de Material o un fallback
+$loader-spinner-color: var(--mat-progress-spinner-active-indicator-color, #007bff);
 
 .loader-overlay {
-  position: fixed; // O 'absolute' si está dentro de un contenedor específico con position: relative
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
@@ -13,8 +13,8 @@ $loader-spinner-color: var(--mat-progress-spinner-active-indicator-color, #007bf
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; // Asegura que esté por encima de la mayoría del contenido
-  transition: opacity 0.3s ease-in-out; // Transición suave
+  z-index: 9999; 
+  transition: opacity 0.3s ease-in-out; 
 }
 
 .loader-content {
@@ -23,9 +23,6 @@ $loader-spinner-color: var(--mat-progress-spinner-active-indicator-color, #007bf
   align-items: center;
   justify-content: center;
   padding: 20px;
-  // background-color: #fff; // Opcional: un fondo sólido para el contenido del loader
-  // border-radius: 8px;
-  // box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .loader-message {
@@ -35,9 +32,3 @@ $loader-spinner-color: var(--mat-progress-spinner-active-indicator-color, #007bf
   color: $loader-message-color;
   font-style: italic;
 }
-
-// Si quieres personalizar el color del spinner específicamente aquí:
-// (Aunque usar la propiedad 'color' en <mat-spinner> o el tema es preferible)
-// ::ng-deep .loader-overlay .mat-mdc-progress-spinner {
-//   --mdc-circular-progress-active-indicator-color: $loader-spinner-color;
-// }

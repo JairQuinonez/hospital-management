@@ -4,9 +4,8 @@ import { MedicalHistorialFormComponent } from '../../components/medical-historia
 import { FormField, FormFieldOption } from '../../interfaces/form-field';
 import { Validators } from '@angular/forms';
 import { ColumnDefinition, TableViewComponent } from "../../components/table-view/table-view.component";
-import { Cita, Usuario } from '../../components/medical-appointments/medical-appointments.component';
 import { AppointsmentsService } from '../../services/appointsments.service';
-import { catchError, map, switchMap, tap, throwError, timer } from 'rxjs';
+import { catchError, delay, map, switchMap, tap, throwError, timer } from 'rxjs';
 import { Appointments, AppointmentsDTO, DAY_OPTIONS, MONTH_OPTIONS, SITE_OPTIONS, SPECIALITY_OPTIONS } from '../../interfaces/appointments.interface';
 import { LoaderService } from '../../services/loader.service';
 import { DoctorService } from '../../services/doctor.service';
@@ -53,6 +52,7 @@ export class AppointmentsComponent implements OnInit, AfterViewInit {
   appointmentsProgramed: Appointments[] = [];
   doctorsSelect: FormFieldOption[] = [];
   isloadindDoctors = true;
+  wasSubmited = false;
 
   columns: ColumnDefinition[] = [
     { key: 'date', header: 'Fecha' },
@@ -148,14 +148,16 @@ export class AppointmentsComponent implements OnInit, AfterViewInit {
           fecha_cita: new Date().toISOString(),
           estado_cita: 'pendiente',
         })),
+        delay(1000),
+        tap(() => this.wasSubmited = true),
         tap(() => {
           this.getAppointments()
         }),
         tap(() => this.toast.emitToast('Exitoso', 'Cita creada', 'success', true)),
+        delay(1000),
+        tap(() => this.wasSubmited = false),
+
         tap(() => this.loader.hide()),
-        tap(() => {
-          this.medicalFormComponent.resetForm()
-        }),
         catchError((err: any) => {
           console.log('Error al crear cita:', err);
           this.loader.hide();
@@ -164,7 +166,7 @@ export class AppointmentsComponent implements OnInit, AfterViewInit {
         })
       )
       .subscribe();
-    
+
 
   }
 

@@ -1,10 +1,10 @@
-// Variables locales
-$avatar-size: 200px;
-$avatar-bg-color: #e0f2fe; // Azul claro de fondo del círculo en la imagen
-$avatar-placeholder-text-color: #4a5568;
-$avatar-border-color: #bfdbfe; // Opcional: si quieres un borde sutil
 
-$button-bg-color: #007bff; // Azul del botón
+$avatar-size: 200px;
+$avatar-bg-color: #e0f2fe; 
+$avatar-placeholder-text-color: #4a5568;
+$avatar-border-color: #bfdbfe;
+
+$button-bg-color: #007bff; 
 $button-text-color: #ffffff;
 $button-hover-bg-color: #0056b3;
 $button-border-radius: 6px;
@@ -14,7 +14,7 @@ $button-icon-spacing: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px; // Espacio entre avatar y botón
+  gap: 15px; 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   &__avatar-wrapper {
@@ -27,7 +27,7 @@ $button-icon-spacing: 8px;
     justify-content: center;
     overflow: hidden;
     cursor: pointer;
-    border: 2px solid $avatar-border-color; // Borde opcional
+    border: 2px solid $avatar-border-color; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 
@@ -44,7 +44,7 @@ $button-icon-spacing: 8px;
   &__avatar-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; // Asegura que la imagen cubra el círculo sin distorsionarse
+    object-fit: cover; 
   }
 
   &__avatar-placeholder {
@@ -57,7 +57,7 @@ $button-icon-spacing: 8px;
     text-align: center;
 
     svg {
-      // El color se define en el fill del SVG en el HTML
+    
       margin-bottom: 5px;
     }
   }
@@ -94,10 +94,10 @@ $button-icon-spacing: 8px;
 
   &__upload-icon {
     margin-right: $button-icon-spacing;
-    // El color es `currentColor` por lo que hereda del botón
+    
   }
 
   &__file-input {
-    display: none; // El input de archivo real está oculto
+    display: none; 
   }
 }

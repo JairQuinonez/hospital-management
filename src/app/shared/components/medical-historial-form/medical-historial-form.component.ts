@@ -78,7 +78,7 @@ export class MedicalHistorialFormComponent {
     const group: { [key: string]: FormControl } = {};
     fields.forEach(field => {
       group[field.key] = this.fb.control(
-        field.initialValue ?? (field.type === 'date' ? null : ''), // MatDatepicker prefiere null para fechas vacías
+        field.initialValue ?? (field.type === 'date' ? null : ''), 
         field.validators
       );
     });
@@ -98,7 +98,7 @@ export class MedicalHistorialFormComponent {
     this.formCancel.emit();
   }
 
-  // Helper para obtener la etiqueta de la opción seleccionada en modo vista
+  
   getSelectedOptionLabel(field: FormField, value: any): string {
     if (!field.options || value === null || value === undefined) {
       return value === null || value === undefined ? '-' : String(value);

@@ -8,26 +8,21 @@ import { Component, ElementRef, input, output, ViewChild } from '@angular/core';
 })
 export class PatientAvatarUploadComponent {
 
-  avatarUrl = input<string | null | undefined>(null); // URL de la imagen del avatar
-  isViewMode = input<boolean>(false); // true para modo vista, false para permitir subida
-  acceptedFileTypes = input<string>('application/pdf'); // Tipos de archivo aceptados
+  avatarUrl = input<string | null | undefined>(null); 
+  isViewMode = input<boolean>(false); 
+  acceptedFileTypes = input<string>('application/pdf'); 
   buttonText = input<string>('Subir archivo');
-  placeholderText = input<string>('Sin Foto'); // Texto para el placeholder si no hay avatar
-
-  // --- Outputs ---
-  fileSelected = output<File>(); // Emite el archivo seleccionado
-  avatarClicked = output<void>(); // Emite cuando se hace clic en el área del avatar
+  placeholderText = input<string>('Sin Foto'); 
+  fileSelected = output<File>(); 
+  avatarClicked = output<void>(); 
 
   // Acceso al input de archivo oculto
   @ViewChild('fileInput') fileInputRef!: ElementRef<HTMLInputElement>;
 
   onAvatarAreaClick(): void {
     if (this.isViewMode()) {
-      this.avatarClicked.emit(); // Solo emitir si está en modo vista y se hace clic en el avatar
+      this.avatarClicked.emit(); 
     } else {
-      // Si no es modo vista, hacer clic en el avatar podría también abrir el selector de archivos
-      // o simplemente no hacer nada y dejar que el botón maneje la subida.
-      // Por ahora, lo haremos para que el avatar sea clickeable para emitir evento.
       this.avatarClicked.emit();
     }
   }

@@ -11,7 +11,7 @@ import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 })
 export class LayoutComponent implements OnInit {
 
-  currentPageTitle = input<string>('Título de Página'); // Título que se mostrará
+  currentPageTitle = input<string>('Título de Página');
   title: string = '';
   userType = input<string>('general');
   menuItems = input<MenuItem[]>([]);

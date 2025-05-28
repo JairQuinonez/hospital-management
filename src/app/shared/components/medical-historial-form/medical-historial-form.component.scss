@@ -5,16 +5,15 @@ $form-actions-padding-top: 20px;
 $form-actions-border-color: #e0e0e0;
 
 .dynamic-material-form {
-  // Estilos generales para el formulario si son necesarios
-  font-family: Roboto, "Helvetica Neue", sans-serif; // Fuente típica de Material
+  
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
 
   &__fields-container {
     display: grid;
-    gap: $form-grid-gap; // Espacio vertical y horizontal entre campos
+    gap: $form-grid-gap; 
   }
 
   &__field-group {
-    // mat-form-field ocupará el ancho completo por defecto dentro del grid item.
   }
 
   &__view-field {
@@ -31,16 +30,16 @@ $form-actions-border-color: #e0e0e0;
   &__view-value-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between; // Para poner el icono de edit al final
-    min-height: 30px; // Altura similar a un campo de material
-    border-bottom: 1px solid rgba(0,0,0,.12); // Línea inferior
+    justify-content: space-between; 
+    min-height: 30px; 
+    border-bottom: 1px solid rgba(0,0,0,.12); 
     padding-bottom: 5px;
   }
 
   &__view-value {
-    font-size: 1em; // Ajusta al tamaño del texto del input de material
+    font-size: 1em; 
     color: rgba(0,0,0,.87);
-    word-break: break-word; // Para textos largos
+    word-break: break-word; 
 
     &--empty {
       color: rgba(0,0,0,.42);
@@ -50,7 +49,7 @@ $form-actions-border-color: #e0e0e0;
 
   &__edit-icon {
     color: rgba(0,0,0,.54);
-    font-size: 20px; // mat-icon por defecto es 24px, ajusta si es necesario
+    font-size: 20px; 
     margin-left: 8px;
   }
   &__mat-field {

@@ -1,8 +1,8 @@
-// Variables locales para la tabla
-$table-header-color: #4a69bd; // Azul similar al de la imagen
+
+$table-header-color: #4a69bd; 
 $table-text-color: #333333;
-$table-border-color: #e0e0e0; // Un gris claro para los bordes
-$table-action-button-bg: #48c9b0; // Verde azulado del botón "Cancelar"
+$table-border-color: #e0e0e0; 
+$table-action-button-bg: #48c9b0; 
 $table-action-button-text-color: #ffffff;
 $table-row-hover-bg: #f9f9f9;
 $table-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,21 +14,20 @@ $table-button-border-radius: 6px;
 
 .responsive-table-wrapper {
   width: 100%;
-  overflow-x: auto; // Permite scroll horizontal en pantallas pequeñas si la tabla es ancha
+  overflow-x: auto; 
   font-family: $table-font-family;
 }
 
 .responsive-table {
   width: 100%;
-  border-collapse: collapse; // Une los bordes de las celdas
-  min-width: 600px; // Evita que se comprima demasiado, forzando el scroll
+  border-collapse: collapse; 
+  min-width: 600px; 
 
   &__header {
-    // Estilos para el a
   }
 
   &__header-row {
-    border-bottom: 1px solid $table-border-color; // Línea debajo de los encabezados
+    border-bottom: 1px solid $table-border-color; 
   }
 
   &__header-cell {
@@ -37,22 +36,17 @@ $table-button-border-radius: 6px;
     font-size: $table-header-font-size;
     padding: $table-padding-vertical $table-padding-horizontal;
     text-align: left;
-    text-transform: capitalize; // Primera letra en mayúscula si se desea
-    cursor: default; // Cambiar a pointer si se implementa ordenación
-    white-space: nowrap; // Evita que los encabezados se partan
-
-    // Si se implementa ordenación, se podrían añadir estilos para indicar que es clickeable
-    // &:hover {
-    //   background-color: darken($table-row-hover-bg, 2%);
-    // }
+    text-transform: capitalize; 
+    cursor: default; 
+    white-space: nowrap; 
 
     &--action {
-      text-align: right; // Para alinear el botón a la derecha
+      text-align: right; 
     }
   }
 
   &__body {
-    // Estilos para el tbody
+  
   }
 
   &__row {
@@ -60,16 +54,16 @@ $table-button-border-radius: 6px;
     transition: background-color 0.15s ease-in-out;
 
     &:last-child {
-      border-bottom: none; // Quitar borde de la última fila
+      border-bottom: none; 
     }
 
     &:hover {
-      // background-color: $table-row-hover-bg; // Opcional: hover en filas
+    
     }
 
     &--empty {
       &:hover {
-        background-color: transparent; // No aplicar hover a la fila vacía
+        background-color: transparent; 
       }
       .responsive-table__cell--empty {
         text-align: center;
@@ -84,11 +78,11 @@ $table-button-border-radius: 6px;
     padding: $table-padding-vertical $table-padding-horizontal;
     font-size: $table-cell-font-size;
     color: $table-text-color;
-    vertical-align: middle; // Alinear contenido verticalmente
+    vertical-align: middle; 
 
     &--action {
-      text-align: right; // Alinear botón
-      white-space: nowrap; // Evita que el botón se rompa
+      text-align: right; 
+      white-space: nowrap; 
     }
   }
 
@@ -101,7 +95,7 @@ $table-button-border-radius: 6px;
     font-size: 0.85em;
     transition: background-color 0.2s ease, transform 0.1s ease;
 
-    &--default { // Clase por defecto, puedes añadir más
+    &--default { 
       background-color: $table-action-button-bg;
       color: $table-action-button-text-color;
 
@@ -112,58 +106,6 @@ $table-button-border-radius: 6px;
         transform: scale(0.97);
       }
     }
-    // Puedes añadir otras clases aquí:
-    // &--danger { background-color: red; ... }
-    // &--secondary { background-color: grey; ... }
+    
   }
 }
-
-// --- Estilos opcionales para pantallas muy pequeñas (Stacking table) ---
-// Esto es más avanzado y requeriría más ajustes en el HTML/TS si se quiere un "stacking" completo.
-// Por ahora, el overflow-x: auto; es la solución más simple para responsive.
-/*
-@media screen and (max-width: 600px) {
-  .responsive-table {
-    min-width: auto; // Quitar min-width para que se adapte
-    &__header {
-      display: none; // Ocultar encabezados tradicionales
-    }
-    &__row {
-      display: block; // Filas como bloques
-      margin-bottom: 15px;
-      border: 1px solid $table-border-color;
-      border-radius: 4px;
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-    &__cell {
-      display: block; // Celdas como bloques
-      text-align: right; // Alinear valor a la derecha
-      padding-left: 50%; // Espacio para la etiqueta
-      position: relative;
-      border-bottom: 1px dotted lighten($table-border-color, 10%);
-      &:last-child {
-        border-bottom: none;
-      }
-      &::before { // Usar el atributo data-label como etiqueta
-        content: attr(data-label);
-        position: absolute;
-        left: $table-padding-horizontal;
-        top: $table-padding-vertical;
-        font-weight: bold;
-        color: $table-header-color;
-        text-align: left;
-        white-space: nowrap;
-      }
-      &--action {
-        text-align: center; // Centrar botón en modo apilado
-        padding: $table-padding-vertical; // Resetear padding
-        &::before {
-          display: none; // No mostrar etiqueta para la celda de acción
-        }
-      }
-    }
-  }
-}
-*/

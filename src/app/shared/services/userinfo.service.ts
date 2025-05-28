@@ -2,13 +2,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserDTOResponse, ValdiateUserDTO, ValdiateUserDTOResponse } from '../interfaces/user.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserinfoService {
 
-  private mainUrl = 'http://localhost:8080/usuarios';
+  private mainUrl = `${environment.apiUrl}/usuarios`;
 
   constructor(
     private http: HttpClient

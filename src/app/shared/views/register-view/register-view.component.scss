@@ -1,29 +1,28 @@
-// Variables locales de la página de registro
+
 $page-bg-color: #ffffff;
-$title-color: #007bff; // Azul para "REGISTRATE"
+$title-color: #007bff; 
 $title-font-size: 2.2rem;
 $title-margin-bottom: 35px;
 
-// Estilos para el contenedor principal de la página
 .register-page-container {
   display: flex;
   min-height: 100vh;
-  background-color: $page-bg-color; // Fondo blanco general
-  overflow: hidden; // Evita scrollbars si el SVG es ligeramente más grande
+  background-color: $page-bg-color; 
+  overflow: hidden; 
 }
 
-// Columna Izquierda: Contenido principal (título y formulario)
+
 .register-page__main-content {
-  //flex: 1 1 60%; // Toma más espacio, puede crecer y encogerse
+  
   padding: 100px 50px;
   display: flex;
   flex-direction: column;
   width: 70%;
 
   @media (max-width: 992px) {
-    flex-basis: 100%; // Ocupa todo el ancho en pantallas pequeñas
+    flex-basis: 100%; 
     padding: 30px 25px;
-    order: 1; // Asegura que el contenido principal vaya primero si se apilan
+    order: 1; 
   }
 }
 
@@ -37,15 +36,12 @@ $title-margin-bottom: 35px;
 
 .register-page__form {
   width: 100%;
-  // Aquí puedes sobreescribir estilos de los botones del formulario
-  // si el componente de formulario no los tiene exactamente como quieres
-  // para esta página en particular.
-  // Ejemplo:
-  .dynamic-form__actions { // Asumiendo esta clase en tu dynamic-form
-    justify-content: flex-start; // Alinear botones a la izquierda
+
+  .dynamic-form__actions { 
+    justify-content: flex-start; 
     margin-top: 30px;
     padding-top: 20px;
-    border-top: none; // Si no quieres el borde que podría tener por defecto
+    border-top: none; 
   }
   .dynamic-form__button--cancel,
   .dynamic-form__button--submit {
@@ -53,21 +49,21 @@ $title-margin-bottom: 35px;
     font-size: 1rem;
   }
   .dynamic-form__button--cancel {
-    background-color: #48c9b0; // Verde azulado
+    background-color: #48c9b0; 
     color: white;
     &:hover { background-color: darken(#48c9b0, 10%); }
   }
    .dynamic-form__button--submit {
-    background-color: #48c9b0; // Verde azulado
+    background-color: #48c9b0; 
     color: white;
     &:hover { background-color: darken(#48c9b0, 10%); }
   }
 }
 
-// Columna Derecha: Lado decorativo con el componente de fondo
+
 .register-page__decorative-side {
-  flex: 1 1 40%; // Toma menos espacio, puede crecer y encogerse
-  position: relative; // Necesario para que app-background-shape funcione como se espera
+  flex: 1 1 40%; 
+  position: relative; 
 
   
 }

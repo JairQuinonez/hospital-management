@@ -2,13 +2,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ValdiateUserDTO, ValdiateUserDTOResponse } from '../../shared/interfaces/user.interface';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthBackendService {
 
-  private mainUrl = 'http://localhost:8080/usuarios';
+  private mainUrl =`${environment.apiUrl}/usuarios`;
 
   constructor(
     private http: HttpClient

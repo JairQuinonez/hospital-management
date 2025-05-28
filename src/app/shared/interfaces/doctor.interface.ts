@@ -3,7 +3,7 @@ export interface DorctorDTO {
   usuario_fk: number;
   especialidad: string;
   nombre: string;
-  fecha_insercion: string; // formato ISO: "YYYY-MM-DDTHH:mm:ss"
+  fecha_insercion: string; 
   usuario_insercion: string;
   fecha_modificacion?: string | null;
   usuario_modificacion?: string | null;

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnDefinition, TableViewComponent } from "../../components/table-view/table-view.component";
 import { MatTabsModule } from '@angular/material/tabs';
-import { Cita } from '../../components/medical-appointments/medical-appointments.component';
 import { Appointments } from '../../interfaces/appointments.interface';
 import { AppointsmentsService } from '../../services/appointsments.service';
 import { LoaderService } from '../../services/loader.service';

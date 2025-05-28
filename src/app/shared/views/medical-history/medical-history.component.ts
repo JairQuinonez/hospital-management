@@ -15,11 +15,11 @@ import { LoaderService } from '../../services/loader.service';
 })
 export class MedicalHistoryComponent implements OnInit {
 
-  currentPatientAvatarUrl: string | null = null; // 'https://ejemplo.com/avatar.jpg'; o null
+  currentPatientAvatarUrl: string | null = null;
   isInReadOnlyMode: boolean = true;
 
   constructor(private loader: LoaderService) {
-    // Simular carga de avatar
+    
 
   }
 
@@ -35,7 +35,7 @@ export class MedicalHistoryComponent implements OnInit {
 
   userData: Record<string, any> | null = {
     fullName: 'Juan Perez Ejemplo',
-    birthDate: '1990-05-15', // Formato YYYY-MM-DD para input tipo date
+    birthDate: '1990-05-15', 
     documentType: 'cc',
     documentNumber: '12345678',
     phone: '3001234567',

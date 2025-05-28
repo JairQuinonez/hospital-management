@@ -18,8 +18,8 @@
   margin: auto;
 
   @media (max-width: 992px) {
-    flex-basis: 100%; // Ocupa todo el ancho en pantallas pequeñas
+    flex-basis: 100%; 
     padding: 30px 25px;
-    order: 1; // Asegura que el contenido principal vaya primero si se apilan
+    order: 1; 
   }
 }
