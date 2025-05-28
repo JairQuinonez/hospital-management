@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-login-cover',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './login-cover.component.scss'
 })
 export class LoginCoverComponent {
+  imageUrl = input<string>('assets/images/cover2.jpg');
 
 }

@@ -1,0 +1,18 @@
+
+<div class="register-page-container"> <!-- Contenedor principal de la página -->
+  <div class="register-page__decorative-side">
+    <app-background-shape shapeSvgUrl="/assets/svgs/general.svg" logoUrl="/assets/svgs/logo_clinic.svg"
+      hospitalName="BIG TOWN HOSPITAL" logoHorizontalAlign="right" logoVerticalAlign="top" nameHorizontalAlign="right"
+      nameVerticalAlign="bottom">
+
+      <div class="register-page__main-content">
+        <h1 class="register-page__title">{{ pageTitle }}</h1>
+        <app-medical-historial-form class="register-page__form" [fields]="registerFields"
+          [initialData]="initialRegisterData" [isViewMode]="false" [formLayoutCols]="2" submitButtonText="Registrarme"
+          cancelButtonText="Cancelar" (formSubmit)="onRegisterSubmit($event)" (formCancel)="onRegisterCancel()">
+        </app-medical-historial-form>
+      </div>
+    </app-background-shape>
+  </div>
+
+</div>

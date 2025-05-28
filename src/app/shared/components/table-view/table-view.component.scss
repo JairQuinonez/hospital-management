@@ -1,0 +1,111 @@
+
+$table-header-color: #4a69bd; 
+$table-text-color: #333333;
+$table-border-color: #e0e0e0; 
+$table-action-button-bg: #48c9b0; 
+$table-action-button-text-color: #ffffff;
+$table-row-hover-bg: #f9f9f9;
+$table-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$table-header-font-size: 1.2em;
+$table-cell-font-size: 1.25em;
+$table-padding-vertical: 10px;
+$table-padding-horizontal: 12px;
+$table-button-border-radius: 6px;
+
+.responsive-table-wrapper {
+  width: 100%;
+  overflow-x: auto; 
+  font-family: $table-font-family;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse; 
+  min-width: 600px; 
+
+  &__header {
+  }
+
+  &__header-row {
+    border-bottom: 1px solid $table-border-color; 
+  }
+
+  &__header-cell {
+    color: $table-header-color;
+    font-weight: 600;
+    font-size: $table-header-font-size;
+    padding: $table-padding-vertical $table-padding-horizontal;
+    text-align: left;
+    text-transform: capitalize; 
+    cursor: default; 
+    white-space: nowrap; 
+
+    &--action {
+      text-align: right; 
+    }
+  }
+
+  &__body {
+  
+  }
+
+  &__row {
+    border-bottom: 1px solid lighten($table-border-color, 5%);
+    transition: background-color 0.15s ease-in-out;
+
+    &:last-child {
+      border-bottom: none; 
+    }
+
+    &:hover {
+    
+    }
+
+    &--empty {
+      &:hover {
+        background-color: transparent; 
+      }
+      .responsive-table__cell--empty {
+        text-align: center;
+        padding: 20px;
+        color: #777;
+        font-style: italic;
+      }
+    }
+  }
+
+  &__cell {
+    padding: $table-padding-vertical $table-padding-horizontal;
+    font-size: $table-cell-font-size;
+    color: $table-text-color;
+    vertical-align: middle; 
+
+    &--action {
+      text-align: right; 
+      white-space: nowrap; 
+    }
+  }
+
+  &__action-button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: $table-button-border-radius;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &--default { 
+      background-color: $table-action-button-bg;
+      color: $table-action-button-text-color;
+
+      &:hover {
+        background-color: darken($table-action-button-bg, 8%);
+      }
+      &:active {
+        transform: scale(0.97);
+      }
+    }
+    
+  }
+}

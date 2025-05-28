@@ -1,0 +1,81 @@
+
+$top-bar-height: 90px; 
+$top-bar-background: #ffffff;
+$top-bar-border-color: #e74c3c; 
+$top-bar-border-height: 3px;
+
+$title-color: #34495e; 
+$title-font-size: 1.8em; 
+$title-font-weight: 700;
+
+$user-name-color: #95a5a6; 
+$user-name-font-size: 1.2em;
+$user-icon-size: 36px;
+$user-icon-color: #bdc3c7; 
+$user-icon-border-color: #bdc3c7; 
+$user-area-spacing: 10px; 
+
+$padding-horizontal: 25px;
+
+$primary-color: #5b9bd5;
+
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  height: $top-bar-height;
+  background-color: $top-bar-background;
+  padding: 0 $padding-horizontal;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+
+  
+  &__title {
+    margin: 0; 
+    font-size: $title-font-size;
+    font-weight: $title-font-weight;
+    color: $title-color;
+    text-transform: uppercase; 
+  }
+
+  
+  &__user-area {
+    display: flex;
+    align-items: center;
+    cursor: pointer; 
+    padding: 5px; 
+    border-radius: 4px; 
+
+    &:hover,
+    &:focus-visible { 
+      background-color: darken($top-bar-background, 5%);
+      outline: none; 
+    }
+    &:focus-visible {
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.4); 
+    }
+  }
+
+  
+  &__user-name {
+    font-size: $user-name-font-size;
+    color: $user-name-color;
+    margin-right: $user-area-spacing;
+  }
+
+ 
+  &__user-icon {
+    width: $user-icon-size;
+    height: $user-icon-size;
+    fill: $user-icon-color; 
+    background-color: #f0f0f0; 
+    border: 1px solid $user-icon-border-color; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; 
+    padding: 4px; 
+  }
+}

@@ -1,0 +1,133 @@
+@use "sass:color";
+$form-grid-gap: 20px 24px;
+$form-actions-margin-top: 30px;
+$form-actions-padding-top: 20px;
+$form-actions-border-color: #e0e0e0;
+
+.dynamic-material-form {
+  
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+
+  &__fields-container {
+    display: grid;
+    gap: $form-grid-gap; 
+  }
+
+  &__field-group {
+  }
+
+  &__view-field {
+    padding: 8px 0; 
+  }
+
+  &__view-label {
+    font-size: 0.75em; 
+    color: rgba(0,0,0,.6);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  &__view-value-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    min-height: 30px; 
+    border-bottom: 1px solid rgba(0,0,0,.12); 
+    padding-bottom: 5px;
+  }
+
+  &__view-value {
+    font-size: 1em; 
+    color: rgba(0,0,0,.87);
+    word-break: break-word; 
+
+    &--empty {
+      color: rgba(0,0,0,.42);
+      font-style: italic;
+    }
+  }
+
+  &__edit-icon {
+    color: rgba(0,0,0,.54);
+    font-size: 20px; 
+    margin-left: 8px;
+  }
+  &__mat-field {
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: $form-actions-margin-top;
+    padding-top: $form-actions-padding-top;
+  }
+
+  &__login-general {
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  &__login-doctor {
+    align-items: center;
+    margin-top: 20px;
+  }
+
+ 
+}
+
+.sign-in-btn {
+    background-color: #46C9BB;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    transition: background-color 0.3s ease;
+    font-size: 1.1em;
+
+    &:hover {
+      background-color: color.adjust(#1b9488, $lightness: -10%);
+    }
+
+    & p {
+      margin: 0;
+      padding: 0;
+      font-size: 1.2em;
+    }
+  }
+
+  .separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    color: #bbb;
+
+    & span {
+      margin: 0 10px;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: #910d0d;
+    }
+  }
+
+   .forgot-password-link {
+    text-align: right;
+    margin-top: 0px;
+    font-size: 1.1em;
+    & a {
+      text-decoration: none;
+      color: #1e4375;
+    }
+  }
+
+  

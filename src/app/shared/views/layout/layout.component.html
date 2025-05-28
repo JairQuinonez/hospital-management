@@ -1,0 +1,12 @@
+<div class="app-layout">
+  <app-side-bar (menuToggled)="onSidebarToggle($event)" 
+  (selectedLabel)="onSelectTitle($event)" [menuItems]="menuItems()">
+</app-side-bar>
+  <div class="main-content-wrapper">
+    <app-top-bar [pageTitle]="title" [userName]="userName()">
+    </app-top-bar>
+    <main class="page-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="profile-page-layout"> 
+
+  <div class="profile-page-layout__avatar-column">
+    <app-patient-avatar-upload
+      [avatarUrl]="currentPatientAvatarUrl"
+      [isViewMode]="true"
+      acceptedFileTypes="application/pdf,image/jpeg,image/png"
+      buttonText="Subir Documento">
+    </app-patient-avatar-upload>
+  </div>
+
+  <div class="profile-page-layout__form-column">
+    <app-medical-historial-form
+      [fields]="userProfileFields"
+      [initialData]="userData"
+      [isViewMode]="true"
+      [formLayoutCols]="2">
+    </app-medical-historial-form>
+  </div>
+
+</div>

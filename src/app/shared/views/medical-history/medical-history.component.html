@@ -1,0 +1,36 @@
+<div class="profile-page-layout">
+
+  <div class="profile-page-layout__avatar-column">
+    <app-patient-avatar-upload
+      [avatarUrl]="currentPatientAvatarUrl"
+      [isViewMode]="!isEditMode"
+      acceptedFileTypes="application/pdf"
+      buttonText="Subir Documento"
+      (fileSelected)="handleFileUploaded($event)"
+      (avatarClicked)="viewPatientAvatar()"
+    >
+    </app-patient-avatar-upload>
+  </div>
+
+  <div class="profile-page-layout__form-column">
+    <app-medical-historial-form
+      [fields]="userProfileFields"
+      [initialData]="userData"
+      [isViewMode]="!isEditMode"
+      [formLayoutCols]="2"
+      (formSubmit)="onProfileSave($event)"
+      (formCancel)="onProfileCancel()"
+      submitButtonText="Actualizar Perfil"
+    >
+    </app-medical-historial-form>
+  </div>
+</div>
+
+@if (!isEditMode) {
+<div style="margin-top: 20px; text-align: right">
+  <button mat-flat-button type="button" color="primary" (click)="toggleEditMode()">
+      Editar HC
+    </button>
+</div>
+}
+

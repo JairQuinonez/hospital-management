@@ -1,0 +1,317 @@
+
+$sidebar-background: #f8f9fa;
+$sidebar-width: 260px;
+$sidebar-width-collapsed: 80px;
+
+$primary-color: #5b9bd5; 
+$primary-color-text: #ffffff;
+
+$logo-main-color: #2563eb; 
+$logo-leaf-color: #34d399; 
+
+$text-color: #333333;
+$text-color-light: #555555;
+$menu-title-color: #222222;
+
+$separator-color: #dee2e6;
+$footer-text-color: #6c757d;
+$icon-color-logout: #f0ad4e; 
+
+$border-radius: 8px;
+$icon-size: 24px;
+$logo-collapsed-width: 40px; 
+
+$transition-duration: 0.3s;
+$text-fade-duration: 0.2s;
+$text-fade-delay: 0.1s; 
+
+
+@mixin text-transition($opacity-duration, $visibility-delay) {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity $opacity-duration ease-in-out $visibility-delay,
+              visibility 0s linear $visibility-delay,
+              width $opacity-duration ease-in-out; 
+}
+
+@mixin hidden-text-styles() {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity $text-fade-duration ease-out,
+              visibility 0s linear $text-fade-duration,
+              width $text-fade-duration ease-in-out;
+}
+
+
+
+.sidebar {
+  width: $sidebar-width;
+  height: 100vh;
+  background-color: $sidebar-background;
+  padding: 20px 15px; 
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: width $transition-duration ease-in-out, padding $transition-duration ease-in-out;
+  overflow-x: hidden;
+
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    min-height: 50px;
+    width: 100%; 
+    box-sizing: border-box;
+    
+  }
+
+  
+  &__logo-link {
+    display: inline-block;
+    line-height: 0;
+  }
+
+
+  &__logo {
+    width: 60px;
+    height: auto;
+    transition: width $transition-duration ease-in-out;
+  }
+
+  
+  &__toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    
+    &-bar {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $primary-color;
+      border-radius: 3px;
+      transition: all $transition-duration ease-in-out;
+    }
+  }
+
+  
+  &__nav {
+    flex-grow: 1;
+  }
+
+  
+  &__menu-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: $menu-title-color;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-left: 5px;
+    height: 24px;
+    overflow: hidden;
+    transition: padding-left $transition-duration ease-in-out;
+
+    &-text {
+      @include text-transition($text-fade-duration, $text-fade-delay);
+    }
+  }
+
+  
+  &__menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  
+  &__menu-item {
+    margin-bottom: 8px;
+    border-radius: $border-radius;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+    outline: none;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.5);
+    }
+
+    &--active {
+      background-color: $primary-color;
+      .sidebar__menu-link { color: $primary-color-text; }
+      .sidebar__menu-icon { color: $primary-color-text; }
+    }
+
+    &--active-collapsed {
+      background-color: transparent;
+      .sidebar__menu-icon { color: $primary-color; }
+    }
+  }
+
+  
+  &__menu-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: $text-color-light;
+    border-radius: $border-radius;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out, padding $transition-duration ease-in-out, color 0.2s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:hover:not(.sidebar__menu-link--active) {
+      background-color: darken($sidebar-background, 5%);
+      color: darken($text-color-light, 10%);
+      .sidebar__menu-icon { color: darken($text-color-light, 10%); }
+    }
+  }
+
+  
+  &__menu-icon {
+    width: $icon-size;
+    height: $icon-size;
+    min-width: $icon-size;
+    margin-right: 12px;
+    color: $text-color-light;
+    transition: margin-right $transition-duration ease-in-out, color 0.2s ease-in-out;
+    flex-shrink: 0;
+  }
+
+  
+  &__menu-label {
+    @include text-transition($text-fade-duration, $text-fade-delay);
+  }
+
+  
+  &__separator {
+    border: none;
+    border-top: 1px solid $separator-color;
+    margin: auto 0 20px 0;
+  }
+
+  
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    min-height: 40px;
+    width: 100%; 
+    box-sizing: border-box;
+  }
+
+  
+  &__hospital-name {
+    font-size: 0.85em;
+    color: $footer-text-color;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    @include text-transition($text-fade-duration, $text-fade-delay);
+  }
+
+  
+  &__logout-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: $icon-color-logout;
+    transition: padding $transition-duration ease-in-out;
+
+    &:focus-visible {
+      outline: 2px solid $icon-color-logout;
+      outline-offset: 1px;
+    }
+  }
+
+  
+  &__logout-icon {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    fill: currentColor;
+    transition: margin-right $transition-duration ease-in-out;
+    flex-shrink: 0;
+  }
+
+  
+  &__logout-label {
+    margin-left: 8px;
+    font-size: 0.9em;
+    @include text-transition($text-fade-duration, $text-fade-delay);
+  }
+
+
+  
+  &--collapsed {
+    width: $sidebar-width-collapsed;
+    padding: 20px 10px; 
+
+    .sidebar__logo {
+      width: $logo-collapsed-width; 
+    }
+
+    .sidebar__menu-title {
+      padding-left: 0;
+      justify-content: center;
+      &-text {
+        @include hidden-text-styles();
+      }
+    }
+
+    .sidebar__menu-link {
+      justify-content: center;
+      padding: 12px 10px;
+    }
+
+    .sidebar__menu-icon {
+      margin-right: 0;
+    }
+
+    .sidebar__menu-label,
+    .sidebar__hospital-name,
+    .sidebar__logout-label {
+      @include hidden-text-styles();
+    }
+
+    
+    .sidebar__menu-item--active {
+        background-color: transparent;
+        .sidebar__menu-link { color: $text-color-light; }
+        .sidebar__menu-icon { color: $text-color-light; }
+    }
+    
+
+    .sidebar__footer {
+      justify-content: center; 
+    }
+
+    .sidebar__logout-button {
+      padding: 5px; 
+    }
+
+    .sidebar__logout-icon {
+      margin-right: 0;
+    }
+  }
+}

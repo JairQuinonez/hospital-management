@@ -1,0 +1,70 @@
+<div class="patient-avatar-upload">
+  <div
+    class="patient-avatar-upload__avatar-wrapper"
+    (click)="onAvatarAreaClick()"
+    role="button"
+    [attr.tabindex]="isViewMode() ? 0 : -1"
+    [attr.aria-label]="
+      isViewMode() ? 'Ver foto del paciente' : 'Área de avatar'
+    "
+  >
+    @if (avatarUrl()) {
+    <img
+      [src]="avatarUrl()"
+      alt="Avatar del paciente"
+      class="patient-avatar-upload__avatar-image"
+    />
+    } @else {
+    <div class="patient-avatar-upload__avatar-placeholder">
+      <!-- Icono SVG de placeholder (similar al de la imagen) -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 100 100"
+        fill="#a0aec0"
+        width="60%"
+        height="60%"
+      >
+        <path
+          d="M50 42.5c-9.65 0-17.5 7.85-17.5 17.5S40.35 77.5 50 77.5s17.5-7.85 17.5-17.5S59.65 42.5 50 42.5zm0 30c-6.9 0-12.5-5.6-12.5-12.5S43.1 47.5 50 47.5s12.5 5.6 12.5 12.5S56.9 72.5 50 72.5z"
+        />
+        <path
+          d="M50 5C25.19 5 5 25.19 5 50s20.19 45 45 45 45-20.19 45-45S74.81 5 50 5zm0 85c-22.06 0-40-17.94-40-40S27.94 10 50 10s40 17.94 40 40-17.94 40-40 40zM72.5 35c0-5.74-3.59-10.7-8.53-12.58C61.09 19.5 57.6 17.5 50 17.5c-7.6 0-11.09 2-13.97 4.92C31.09 24.3 27.5 29.26 27.5 35c0 3.44.91 6.62 2.53 9.34-.49.55-.93 1.14-1.31 1.76C26.38 49.88 25 54.72 25 60c0 1.8.23 3.54.66 5.2C27.71 72.97 35.04 80 43.75 80h12.5c8.71 0 16.04-7.03 18.09-14.8.43-1.66.66-3.4.66-5.2 0-5.28-1.38-10.12-3.72-13.9-.38-.62-.82-1.21-1.31-1.76C71.59 41.62 72.5 38.44 72.5 35z"
+        />
+      </svg>
+      <span class="patient-avatar-upload__placeholder-text">{{
+        placeholderText()
+      }}</span>
+    </div>
+    }
+  </div>
+
+  @if (!isViewMode()) {
+  <button
+    type="button"
+    class="patient-avatar-upload__upload-button"
+    (click)="onUploadButtonClick()"
+    [attr.aria-label]="buttonText()"
+  >
+    <!-- Icono SVG de subida -->
+    <svg
+      class="patient-avatar-upload__upload-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      width="18px"
+      height="18px"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
+    </svg>
+    <span>{{ buttonText() }}</span>
+  </button>
+  <input
+    type="file"
+    #fileInput
+    class="patient-avatar-upload__file-input"
+    [accept]="acceptedFileTypes()"
+    (change)="onFileChange($event)"
+  />
+  }
+</div>

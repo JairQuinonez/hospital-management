@@ -3,17 +3,17 @@
     <p class="welcome-message">Por favor, selecciona el tipo de usuario que eres:</p>
 
     <div class="role-buttons">
-        <button class="role-button doctor" (click)="selectRole('doctor')" [class.selected]="selectedRole === 'doctor'">
+        <button class="role-button doctor" (click)="selectRole('dr')" [class.selected]="selectedRole === 'dr'">
             Doctor
         </button>
-        <button class="role-button patient" (click)="selectRole('patient')"
-            [class.selected]="selectedRole === 'patient'">
+        <button class="role-button patient" (click)="selectRole('pa')"
+            [class.selected]="selectedRole === 'pa'">
             Paciente
         </button>
     </div>
     @if (selectedRole){
     <div class="selected-message">
-        Has seleccionado: <strong>{{ selectedRole === 'doctor' ? 'Doctor' : 'Paciente' }}</strong>.
+        Has seleccionado: <strong>{{ selectedRole === 'dr' ? 'Doctor' : 'Paciente' }}</strong>.
         A continuación, serás redirigido al formulario correspondiente.
     </div>
 

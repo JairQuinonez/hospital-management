@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
           if (this.authService.hasRole()) {
             return true; 
           } else {
-            this.router.navigate(['/role-selection'] );
+            this.router.navigate(['/login'] );
             return false; 
           }
         } else {

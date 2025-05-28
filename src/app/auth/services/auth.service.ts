@@ -34,6 +34,8 @@ export class AuthService {
   }
 
   login(): void {
+    localStorage.setItem('userType', 'dr');
+    this.localStorageService.setItem('role', 'dr');
     this.oauthService.initCodeFlow();
   }
 
@@ -43,9 +45,7 @@ export class AuthService {
     this.localStorageService.clear();
     this.userProfileSubject.next(null);
     this.isLoggedInSubject.next(false);
-    this.router.navigate(['/login']);
-    
-    this.localStorageService.setDefaultUserInfo();  
+    this.router.navigate(['/login-dr']);
   }
 
   loadUserProfile(): void {

@@ -1,0 +1,15 @@
+<div class="background-shape" [style.background-image]="shapeSvgUrl() ? 'url(' + shapeSvgUrl() + ')' : 'none'">
+  @if (logoUrl()) {
+    <img [src]="logoUrl()" alt="Logo" class="background-shape__logo" [ngClass]="logoAlignmentClasses">
+  }
+
+  @if (hospitalName()) {
+    <span class="background-shape__name" [ngClass]="nameAlignmentClasses">
+      {{ hospitalName() }}
+    </span>
+  }
+  <!-- Slot para contenido adicional que se quiera superponer -->
+  <div class="background-shape__content-overlay">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<app-background-shape
+  shapeSvgUrl="/assets/svgs/general.svg"
+  logoUrl="/assets/svgs/logo_clinic.svg"
+  hospitalName="BIG TOWN HOSPITAL"
+  logoHorizontalAlign="left"
+  logoVerticalAlign="top"
+  nameHorizontalAlign="left"
+  nameVerticalAlign="bottom"
+>
+  <div class="register-page__main-content">
+    <div class="login">
+      <app-login-cover
+        class="login__item"
+        imageUrl="assets/svgs/general-locing-image.svg"
+      />
+      <app-login-box class="login__item" [isGeneralLogin]="true" />
+    </div>
+  </div>
+</app-background-shape>
